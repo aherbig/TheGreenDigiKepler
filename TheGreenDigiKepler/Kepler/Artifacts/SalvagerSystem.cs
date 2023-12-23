@@ -5,8 +5,6 @@ namespace TheGreenDigiKepler.Kepler.Artifacts
 {
     public class SalvagerSystem : Artifact
     {
-        public bool salvaging = true;
-
         public override void OnReceiveArtifact(State state)
         {
             bool toggle = false;
@@ -40,16 +38,18 @@ namespace TheGreenDigiKepler.Kepler.Artifacts
         {
             if (!targetPlayer || combat?.currentCardAction is not AMissileHit missileHit)
             {
-                return base.ModifyBaseMissileDamage(state, combat, targetPlayer);
+                return 0;
             }
 
             Part? shipPart = state.ship.GetPartAtWorldX(missileHit.worldX);
-            if (shipPart is { type: PType.missiles, active: false })
+            if (shipPart is not { type: PType.missiles, active: false })
             {
-                return -int.MaxValue;
+                return 0;
             }
-            
-            return base.ModifyBaseMissileDamage(state, combat, targetPlayer);
+
+            missileHit.weaken = false;
+            missileHit.status = null;
+            return -int.MaxValue;
         }
     }
 }

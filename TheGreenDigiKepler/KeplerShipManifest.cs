@@ -135,28 +135,51 @@ namespace TheGreenDigiKepler
     public partial class KeplerShipManifest : IArtifactManifest
     {
         private ExternalArtifact? SalvagerSystem { get; set; }
+        private ExternalArtifact? SalvageNet { get; set; }
 
         public void LoadManifest(IArtifactRegistry registry)
         {
-            var spr = ExternalSprite.GetRaw((int)Spr.artifacts_AresCannon);
-            SalvagerSystem = new ExternalArtifact
-            (
-                "TheGreenDigi.Kepler.Artifact.SalvagerSystem",
-                typeof(SalvagerSystem),
-                spr,
-                new ExternalGlossary[0],
-                null,
-                null
-            );
+            {
+                var spr = ExternalSprite.GetRaw((int)Spr.artifacts_AresCannon);
+                SalvagerSystem = new ExternalArtifact
+                (
+                    "TheGreenDigi.Kepler.Artifact.SalvagerSystem",
+                    typeof(SalvagerSystem),
+                    spr,
+                    new ExternalGlossary[0],
+                    null,
+                    null
+                );
 
-            SalvagerSystem.AddLocalisation
-            (
-                "Kepler Salvager Systems",
-                "If a missile were to hit your inactive missile bay, it is destroyed instead. " +
-                "At the start of your turn, if you don’t have a Salvager System in your hand, gain one."
-            );
+                SalvagerSystem.AddLocalisation
+                (
+                    "Kepler Salvager Systems",
+                    "If a missile were to hit your inactive missile bay, it is destroyed instead. " +
+                    "At the start of your turn, if you don’t have a Salvager System in your hand, gain one."
+                );
 
-            registry.RegisterArtifact(SalvagerSystem);
+                registry.RegisterArtifact(SalvagerSystem);
+            }
+            {
+                var spr = ExternalSprite.GetRaw((int)Spr.artifacts_MultiThreading_off);
+                SalvageNet = new ExternalArtifact
+                (
+                    "TheGreenDigi.Kepler.Artifact.SalvageNet",
+                    typeof(SalvageNet),
+                    spr,
+                    new ExternalGlossary[0],
+                    null,
+                    null
+                );
+
+                SalvageNet.AddLocalisation
+                (
+                    "Salvage Net",
+                    "If a missile were to hit your inactive missile bay, it is instead removed without destroying it, turned around, and added to your hand in a Relaunch."
+                );
+
+                registry.RegisterArtifact(SalvageNet);
+            }
         }
     }
 
@@ -164,12 +187,15 @@ namespace TheGreenDigiKepler
     {
         public void LoadManifest(ICardRegistry registry)
         {
-            var spr = ExternalSprite.GetRaw((int)Spr.cards_OxygenLeak);
-            if (spr == null)
-                return;
-            ExternalCard card = new ExternalCard("TheGreenDigi.Kepler.Card.SalvagerSystem", typeof(SalvagerSystemCard), spr, null);
-            card.AddLocalisation("Salvager System");
-            registry.RegisterCard(card);
+            var spr = ExternalSprite.GetRaw((int)Spr.cards_Deflection);
+            ExternalCard salvagerSystemCard = new ExternalCard("TheGreenDigi.Kepler.Card.SalvagerSystem", typeof(SalvagerSystemCard), spr, null);
+            salvagerSystemCard.AddLocalisation("Salvager System");
+            registry.RegisterCard(salvagerSystemCard);
+            
+            var relaunch_spr = ExternalSprite.GetRaw((int)Spr.cards_SeekerMissileCard);
+            ExternalCard relaunchCard = new ExternalCard("TheGreenDigi.Kepler.Card.Relaunch", typeof(RelaunchCard), relaunch_spr, null);
+            relaunchCard.AddLocalisation("Relaunch");
+            registry.RegisterCard(relaunchCard);
         }
     }
 }
