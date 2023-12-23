@@ -55,8 +55,8 @@ namespace TheGreenDigiKepler
                     baseEnergy = 3,
                     heatTrigger = 3,
                     heatMin = 0,
-                    hull = 10,
-                    hullMax = 10,
+                    hull = 7,
+                    hullMax = 7,
                     shieldMaxBase = 3
                 },
                 new ExternalPart[] { MissileBay, Cockpit, Cannon, MissileBay },
