@@ -3,7 +3,8 @@ using CobaltCoreModding.Definitions.ExternalItems;
 using CobaltCoreModding.Definitions.ModContactPoints;
 using CobaltCoreModding.Definitions.ModManifests;
 using Microsoft.Extensions.Logging;
-using TheGreenDigiKepler.Artifacts;
+using TheGreenDigiKepler.Kepler.Artifacts;
+using TheGreenDigiKepler.Kepler.Cards;
 
 namespace TheGreenDigiKepler
 {
@@ -64,8 +65,6 @@ namespace TheGreenDigiKepler
             );
             shipRegistry.RegisterShip(Kepler);
         }
-
-        
 
         public void LoadManifest(IStartershipRegistry registry)
         {
@@ -142,7 +141,7 @@ namespace TheGreenDigiKepler
             var spr = ExternalSprite.GetRaw((int)Spr.artifacts_AresCannon);
             SalvagerSystem = new ExternalArtifact
             (
-                "MySalvagerSystem",
+                "TheGreenDigi.Kepler.Artifact.SalvagerSystem",
                 typeof(SalvagerSystem),
                 spr,
                 new ExternalGlossary[0],
@@ -158,6 +157,20 @@ namespace TheGreenDigiKepler
             );
 
             registry.RegisterArtifact(SalvagerSystem);
+        }
+    }
+
+    public partial class KeplerShipManifest : ICardManifest
+    {
+        public void LoadManifest(ICardRegistry registry)
+        {
+            var spr = ExternalSprite.GetRaw((int)Spr.cards_OxygenLeak);
+            if (spr == null)
+                return;
+            ExternalCard card = new ExternalCard("TheGreenDigi.Kepler.Card.SalvagerSystem", typeof(SalvagerSystemCard), spr, null);
+            card.AddLocalisation("Salvager System");
+            //register card in the db extender.
+            registry.RegisterCard(card);
         }
     }
 }
