@@ -75,7 +75,7 @@ namespace TheGreenDigiKepler
                 Kepler.GlobalName,
                 new ExternalCard[0],
                 new ExternalArtifact[] { SalvagerSystem ?? throw new Exception() },
-                new Type[0],
+                new Type[] { typeof(DodgeColorless), typeof(BasicShieldColorless)} ,
                 new Type[0],
                 exclusiveArtifacts: new ExternalArtifact[] { SalvagerSystem ?? throw new Exception() }
             );
