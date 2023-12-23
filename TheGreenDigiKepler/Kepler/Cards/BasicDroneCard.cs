@@ -15,13 +15,11 @@
                     break;
 
                 case Upgrade.A:
-                    list.Add(new ASpawn() { thing = new AttackDrone { upgraded = true } });
+                    list.Add(new ASpawn() { thing = new AttackDrone() });
                     break;
 
                 case Upgrade.B:
-                    list.Add(new ASpawn { thing = new AttackDrone(), disabled = flipped });
-                    list.Add(new ADummyAction());
-                    list.Add(new ASpawn { thing = new ShieldDrone() { targetPlayer = true }, disabled = !flipped });
+                    list.Add(new ASpawn() { thing = new AttackDrone { upgraded = true } });
                     break;
             }
 
@@ -31,18 +29,13 @@
         public override CardData GetData(State state) => new CardData
         {
             cost = 1,
-            art = new Spr?(upgrade switch
-            {
-                Upgrade.B => flipped ? Spr.cards_Adaptability_Bottom : Spr.cards_Adaptability_Top,
-                _ => Spr.cards_colorless
-            }),
+            art = new Spr?(Spr.cards_colorless),
             exhaust = upgrade switch
             {
                 Upgrade.A => false,
                 _ => true
             },
-            artTint = "ffffff",
-            floppable = upgrade == Upgrade.B,
+            artTint = "ffffff"
         };
     }
 }
