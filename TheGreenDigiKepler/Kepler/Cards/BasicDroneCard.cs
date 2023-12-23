@@ -21,7 +21,7 @@
                 case Upgrade.B:
                     list.Add(new ASpawn { thing = new AttackDrone(), disabled = flipped });
                     list.Add(new ADummyAction());
-                    list.Add(new ASpawn { thing = new ShieldDrone(), disabled = !flipped });
+                    list.Add(new ASpawn { thing = new ShieldDrone() { targetPlayer = true }, disabled = !flipped });
                     break;
             }
 
