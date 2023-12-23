@@ -3,10 +3,11 @@ using CobaltCoreModding.Definitions.ExternalItems;
 using CobaltCoreModding.Definitions.ModContactPoints;
 using CobaltCoreModding.Definitions.ModManifests;
 using Microsoft.Extensions.Logging;
+using TheGreenDigiKepler.Artifacts;
 
 namespace TheGreenDigiKepler
 {
-    public class KeplerShipManifest : IShipManifest, IShipPartManifest, IStartershipManifest
+    public partial class KeplerShipManifest : IShipManifest, IShipPartManifest, IStartershipManifest
     {
         public IEnumerable<DependencyEntry> Dependencies => new DependencyEntry[0];
         public DirectoryInfo? GameRootFolder { get; set; }
@@ -17,13 +18,25 @@ namespace TheGreenDigiKepler
         private ExternalShip? Kepler { get; set; }
 
         private ExternalPart? _missileBay;
-        private ExternalPart MissileBay { get { return _missileBay ??= CreateMissileBay(); } }
-        
+
+        private ExternalPart MissileBay
+        {
+            get { return _missileBay ??= CreateMissileBay(); }
+        }
+
         private ExternalPart? _cockpit;
-        private ExternalPart Cockpit { get { return _cockpit ??= CreateCockpit(); } }
-        
+
+        private ExternalPart Cockpit
+        {
+            get { return _cockpit ??= CreateCockpit(); }
+        }
+
         private ExternalPart? _cannon;
-        private ExternalPart Cannon { get { return _cannon ??= CreateCannon(); } }
+
+        private ExternalPart Cannon
+        {
+            get { return _cannon ??= CreateCannon(); }
+        }
 
         public void LoadManifest(IShipPartRegistry registry)
         {
@@ -52,12 +65,21 @@ namespace TheGreenDigiKepler
             shipRegistry.RegisterShip(Kepler);
         }
 
+        
+
         public void LoadManifest(IStartershipRegistry registry)
         {
             if (Kepler == null)
                 return;
-            var starter = new ExternalStarterShip("TheGreenDigi.Kepler.Ship.Starter",
-                Kepler.GlobalName, new ExternalCard[0], new ExternalArtifact[0], new Type[0], new Type[0], exclusiveArtifacts: new ExternalArtifact[0]);
+            var starter = new ExternalStarterShip
+            ("TheGreenDigi.Kepler.Ship.Starter",
+                Kepler.GlobalName,
+                new ExternalCard[0],
+                new ExternalArtifact[] { SalvagerSystem ?? throw new Exception() },
+                new Type[0],
+                new Type[0],
+                exclusiveArtifacts: new ExternalArtifact[] { SalvagerSystem ?? throw new Exception() }
+            );
 
             starter.AddLocalisation("Kepler", "Eat missiles and have fun.");
 
@@ -71,7 +93,7 @@ namespace TheGreenDigiKepler
                 "TheGreenDigi.Kepler.Ship.MissileBay",
                 new Part()
                 {
-                    active = true,
+                    active = false,
                     damageModifier = PDamMod.none,
                     type = PType.missiles,
                 },
@@ -107,6 +129,35 @@ namespace TheGreenDigiKepler
                 },
                 ExternalSprite.GetRaw((int)Spr.parts_cockpit_conveyor)
             );
+        }
+
+    }
+
+    public partial class KeplerShipManifest : IArtifactManifest
+    {
+        private ExternalArtifact? SalvagerSystem { get; set; }
+
+        public void LoadManifest(IArtifactRegistry registry)
+        {
+            var spr = ExternalSprite.GetRaw((int)Spr.artifacts_AresCannon);
+            SalvagerSystem = new ExternalArtifact
+            (
+                "MySalvagerSystem",
+                typeof(SalvagerSystem),
+                spr,
+                new ExternalGlossary[0],
+                null,
+                null
+            );
+
+            SalvagerSystem.AddLocalisation
+            (
+                "Kepler Salvager Systems",
+                "If a missile were to hit your inactive missile bay, it is destroyed instead. " +
+                "At the start of your turn, if you don’t have a Salvager System in your hand, gain one."
+            );
+
+            registry.RegisterArtifact(SalvagerSystem);
         }
     }
 }
