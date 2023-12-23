@@ -2,7 +2,7 @@
 
 namespace TheGreenDigiKepler.Kepler.Cards
 {
-    [CardMeta(deck = Deck.ares, rarity = Rarity.common)]
+    [CardMeta(deck = Deck.ares, dontOffer = true, rarity = Rarity.common)]
     public class SalvagerSystemCard : Card
     {
         public override string Name() => "Salvager System Card";

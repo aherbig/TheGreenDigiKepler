@@ -1,4 +1,7 @@
-﻿namespace TheGreenDigiKepler.Kepler.Artifacts
+﻿using TheGreenDigiKepler.Kepler.Actions;
+using TheGreenDigiKepler.Kepler.Cards;
+
+namespace TheGreenDigiKepler.Kepler.Artifacts
 {
     [ArtifactMeta(owner = Deck.colorless, pools = new ArtifactPool[] {ArtifactPool.Boss}, unremovable = true)]
     public class SalvagerSystemsTwo : Artifact
@@ -6,6 +9,8 @@
         public override string Name() => "Salvager Systems V2";
         public override string Description() => "Replaces <c=artifact>Salvager Systems</c>.\nIf a missile were to hit your inactive missile bay, it is destroyed instead. " +
                                                 "At the start of your turn, if you don’t have a <c=card>Swarm Mode</c> in your hand, gain one.";
+
+        private bool activeBayShouldBeTheFirstOne;
 
         public override void OnReceiveArtifact(State s)
         {
@@ -25,36 +30,47 @@
                 }
             }
         }
-        
+
         public override void OnTurnStart(State state, Combat combat)
         {
-           /* if (state.ship.GetPartTypeCount(PType.missiles) > 1)
+            if (state.ship.GetPartTypeCount(PType.missiles) > 1)
             {
+                bool isFirstBay = true;
                 List<Part> parts = state.ship.parts;
                 for (int index = 0; index < parts.Count; ++index)
                 {
-                    if (parts[index].type == PType.missiles && parts[index].flip == this.nextCannonShouldBeTheFlippedOne)
-                        parts[index].active = false;
+                    if (parts[index].type == PType.missiles)
+                    {
+                        if (isFirstBay)
+                        {
+                            parts[index].active = activeBayShouldBeTheFirstOne;
+                        }
+                        else
+                        {
+                            parts[index].active = !activeBayShouldBeTheFirstOne;
+                        }
+                        isFirstBay = false;
+                    }
                 }
-                this.nextCannonShouldBeTheFlippedOne = !this.nextCannonShouldBeTheFlippedOne;
+                activeBayShouldBeTheFirstOne = !activeBayShouldBeTheFirstOne;
             }
             bool flag = false;
             foreach (Card card in combat.hand)
             {
-                if (card is AresSuperCannon)
+                if (card is SwarmModeCard)
                     flag = true;
             }
             if (flag)
                 return;
-            combat.Queue((CardAction) new AAresCannon2CardDelay());*/
+            combat.Queue(new KeplerSwarmModeDelayedCardAction());
         }
 
-      /*  public override List<Tooltip>? GetExtraTooltips() => new List<Tooltip>()
+        public override List<Tooltip>? GetExtraTooltips() => new List<Tooltip>()
         {
             new TTCard()
             {
-                card = (Card) new AresSuperCannon()
+                card = new SwarmModeCard()
             }
-        };*/
+        };
     }
 }

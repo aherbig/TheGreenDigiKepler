@@ -220,6 +220,12 @@ namespace TheGreenDigiKepler
                 registry.RegisterCard(salvagerSystemCard);
             }
             {
+                var swarmmode_spr = ExternalSprite.GetRaw((int)Spr.cards_Deflection);
+                ExternalCard swarmmodeCard = new ExternalCard("TheGreenDigi.Kepler.Card.SwarmMode", typeof(SwarmModeCard), swarmmode_spr, null);
+                swarmmodeCard.AddLocalisation("Swarm Mode");
+                registry.RegisterCard(swarmmodeCard);
+            }
+            {
                 var relaunch_spr = ExternalSprite.GetRaw((int)Spr.cards_SeekerMissileCard);
                 ExternalCard relaunchCard = new ExternalCard("TheGreenDigi.Kepler.Card.Relaunch", typeof(RelaunchCard), relaunch_spr, null);
                 relaunchCard.AddLocalisation("Relaunch");
