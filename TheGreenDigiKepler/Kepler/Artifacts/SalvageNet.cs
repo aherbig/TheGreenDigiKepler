@@ -16,7 +16,19 @@ namespace TheGreenDigiKepler.Kepler.Artifacts
                 return 0;
             }
 
-            Part? shipPart = state.ship.GetPartAtWorldX(missileHit.worldX);
+            combat.stuff.TryGetValue(missileHit.worldX, out var stuffBase);
+            if (stuffBase is not Missile missile)
+            {
+                return 0;
+            }
+
+            int attackLocation = missile.missileType switch
+            {
+                MissileType.seeker => missile.GetSeekerImpact(state, combat),
+                _ => missileHit.worldX
+            };
+            
+            Part? shipPart = state.ship.GetPartAtWorldX(attackLocation);
             if (shipPart is not { type: PType.missiles, active: false })
             {
                 return 0;
@@ -24,7 +36,7 @@ namespace TheGreenDigiKepler.Kepler.Artifacts
 
             combat.QueueImmediate(new AAddCard()
             {
-                card = new RelaunchCard { outgoingDamage = missileHit.outgoingDamage },
+                card = new RelaunchCard { missileType = missile.missileType },
                 destination = CardDestination.Hand
             });
             return 0;
