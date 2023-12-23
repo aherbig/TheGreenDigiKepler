@@ -136,6 +136,7 @@ namespace TheGreenDigiKepler
     public partial class KeplerShipManifest : IArtifactManifest
     {
         private ExternalArtifact? SalvagerSystem { get; set; }
+        private ExternalArtifact? SalvagerSystemTwo { get; set; }
         private ExternalArtifact? SalvageNet { get; set; }
 
         public void LoadManifest(IArtifactRegistry registry)
@@ -154,12 +155,33 @@ namespace TheGreenDigiKepler
 
                 SalvagerSystem.AddLocalisation
                 (
-                    "Kepler Salvager Systems",
+                    "Salvager Systems",
                     "If a missile were to hit your inactive missile bay, it is destroyed instead. " +
-                    "At the start of your turn, if you don’t have a Salvager System in your hand, gain one."
+                    "At the start of your turn, if you don’t have a <c=card>Salvager System</c> in your hand, gain one."
                 );
 
                 registry.RegisterArtifact(SalvagerSystem);
+            }
+            {
+                var spr = ExternalSprite.GetRaw((int)Spr.artifacts_AresCannonV2);
+                SalvagerSystemTwo = new ExternalArtifact
+                (
+                    "TheGreenDigi.Kepler.Artifact.SalvagerSystemV2",
+                    typeof(SalvagerSystemsTwo),
+                    spr,
+                    new ExternalGlossary[0],
+                    null,
+                    null
+                );
+
+                SalvagerSystemTwo.AddLocalisation
+                (
+                    "Salvager Systems V2",
+                    "Replaces <c=artifact>Salvager Systems</c>.\nIf a missile were to hit your inactive missile bay, it is destroyed instead. " +
+                    "At the start of your turn, if you don’t have a <c=card>Swarm Mode</c> in your hand, gain one."
+                );
+
+                registry.RegisterArtifact(SalvagerSystemTwo);
             }
             {
                 var spr = ExternalSprite.GetRaw((int)Spr.artifacts_MultiThreading_off);
@@ -176,7 +198,7 @@ namespace TheGreenDigiKepler
                 SalvageNet.AddLocalisation
                 (
                     "Salvage Net",
-                    "If a missile were to hit your inactive missile bay, it is instead removed without destroying it, turned around, and added to your hand in a Relaunch."
+                    "If a missile were to hit your inactive missile bay, it is instead removed without destroying it, turned around, and added to your hand in a <c=card>Relaunch</c>."
                 );
 
                 registry.RegisterArtifact(SalvageNet);
