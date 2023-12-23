@@ -32,8 +32,8 @@
         {
             cost = upgrade switch
             {
-                Upgrade.A => 0,
-                _ => 1
+                Upgrade.A => 1,
+                _ => 2
             },
             art = new Spr?(upgrade switch
             {
