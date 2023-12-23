@@ -36,6 +36,11 @@
                 Upgrade.B => flipped ? Spr.cards_Adaptability_Bottom : Spr.cards_Adaptability_Top,
                 _ => Spr.cards_colorless
             }),
+            exhaust = upgrade switch
+            {
+                Upgrade.A => false,
+                _ => true
+            },
             artTint = "ffffff",
             floppable = upgrade == Upgrade.B,
         };
