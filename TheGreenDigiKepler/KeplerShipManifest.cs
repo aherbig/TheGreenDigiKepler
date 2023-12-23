@@ -73,7 +73,7 @@ namespace TheGreenDigiKepler
             var starter = new ExternalStarterShip
             ("TheGreenDigi.Kepler.Ship.Starter",
                 Kepler.GlobalName,
-                new ExternalCard[0],
+                new ExternalCard[] { BasicMineCard ?? throw new Exception(), BasicDroneCard ?? throw new Exception()},
                 new ExternalArtifact[] { SalvagerSystem ?? throw new Exception() },
                 new Type[] { typeof(DodgeColorless), typeof(BasicShieldColorless)} ,
                 new Type[0],
@@ -185,17 +185,37 @@ namespace TheGreenDigiKepler
 
     public partial class KeplerShipManifest : ICardManifest
     {
+        private ExternalCard? BasicMineCard { get; set; }
+        private ExternalCard? BasicDroneCard { get; set; }
+
         public void LoadManifest(ICardRegistry registry)
         {
-            var spr = ExternalSprite.GetRaw((int)Spr.cards_Deflection);
-            ExternalCard salvagerSystemCard = new ExternalCard("TheGreenDigi.Kepler.Card.SalvagerSystem", typeof(SalvagerSystemCard), spr, null);
-            salvagerSystemCard.AddLocalisation("Salvager System");
-            registry.RegisterCard(salvagerSystemCard);
-            
-            var relaunch_spr = ExternalSprite.GetRaw((int)Spr.cards_SeekerMissileCard);
-            ExternalCard relaunchCard = new ExternalCard("TheGreenDigi.Kepler.Card.Relaunch", typeof(RelaunchCard), relaunch_spr, null);
-            relaunchCard.AddLocalisation("Relaunch");
-            registry.RegisterCard(relaunchCard);
+            {
+                var spr = ExternalSprite.GetRaw((int)Spr.cards_Deflection);
+                ExternalCard salvagerSystemCard = new ExternalCard("TheGreenDigi.Kepler.Card.SalvagerSystem", typeof(SalvagerSystemCard), spr, null);
+                salvagerSystemCard.AddLocalisation("Salvager System");
+                registry.RegisterCard(salvagerSystemCard);
+            }
+            {
+                var relaunch_spr = ExternalSprite.GetRaw((int)Spr.cards_SeekerMissileCard);
+                ExternalCard relaunchCard = new ExternalCard("TheGreenDigi.Kepler.Card.Relaunch", typeof(RelaunchCard), relaunch_spr, null);
+                relaunchCard.AddLocalisation("Relaunch");
+                registry.RegisterCard(relaunchCard);
+            }
+            {
+                var basicmine_spr = ExternalSprite.GetRaw((int)Spr.cards_colorless);
+                ExternalCard basicMineCard = new ExternalCard("TheGreenDigi.Kepler.Card.BasicMine", typeof(BasicMineCard), basicmine_spr, null);
+                basicMineCard.AddLocalisation("Basic Mine");
+                registry.RegisterCard(basicMineCard);
+                BasicMineCard = basicMineCard;
+            }
+            {
+                var basicdrone_spr = ExternalSprite.GetRaw((int)Spr.cards_colorless);
+                ExternalCard basicDroneCard = new ExternalCard("TheGreenDigi.Kepler.Card.BasicDrone", typeof(BasicDroneCard), basicdrone_spr, null);
+                basicDroneCard.AddLocalisation("Basic Drone");
+                registry.RegisterCard(basicDroneCard);
+                BasicDroneCard = basicDroneCard;
+            }
         }
     }
 }

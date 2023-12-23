@@ -5,6 +5,8 @@ namespace TheGreenDigiKepler.Kepler.Cards
     [CardMeta(deck = Deck.ares, rarity = Rarity.common)]
     public class SalvagerSystemCard : Card
     {
+        public override string Name() => "Salvager System Card";
+
         private static Spr card_sprite = Spr.cards_Deflection;
 
         public override List<CardAction> GetActions(State s, Combat c)
@@ -29,8 +31,6 @@ namespace TheGreenDigiKepler.Kepler.Cards
             temporary = true,
             singleUse = true,
         };
-
-        public override string Name() => "KeplerDemoCard";
     }
     
 }
