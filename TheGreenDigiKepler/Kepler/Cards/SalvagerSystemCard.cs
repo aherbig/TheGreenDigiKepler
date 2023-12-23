@@ -22,6 +22,7 @@ namespace TheGreenDigiKepler.Kepler.Cards
 
         public override CardData GetData(State state) => new CardData
         {
+            description = "Toggle which missile bay is active.",
             cost = 0,
             art = card_sprite,
             retain = true,

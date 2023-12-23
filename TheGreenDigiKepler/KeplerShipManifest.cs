@@ -169,7 +169,6 @@ namespace TheGreenDigiKepler
                 return;
             ExternalCard card = new ExternalCard("TheGreenDigi.Kepler.Card.SalvagerSystem", typeof(SalvagerSystemCard), spr, null);
             card.AddLocalisation("Salvager System");
-            //register card in the db extender.
             registry.RegisterCard(card);
         }
     }
