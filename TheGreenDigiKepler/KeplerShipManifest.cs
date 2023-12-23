@@ -96,7 +96,8 @@ namespace TheGreenDigiKepler
                     damageModifier = PDamMod.none,
                     type = PType.missiles,
                 },
-                ExternalSprite.GetRaw((int)Spr.parts_missiles_conveyor)
+                ExternalSprite.GetRaw((int)Spr.parts_missiles_ancient),
+                ExternalSprite.GetRaw((int)Spr.parts_missiles_gemini_off)
             );
         }
 
