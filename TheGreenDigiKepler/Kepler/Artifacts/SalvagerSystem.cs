@@ -3,8 +3,13 @@ using TheGreenDigiKepler.Kepler.Cards;
 
 namespace TheGreenDigiKepler.Kepler.Artifacts
 {
+    [ArtifactMeta(owner = Deck.colorless, pools = new ArtifactPool[] {ArtifactPool.EventOnly}, unremovable = true)]
     public class SalvagerSystem : Artifact
     {
+        public override string Name() => "Salvager Systems";
+        public override string Description() => "If a missile were to hit your inactive missile bay, it is destroyed instead. " +
+                                                "At the start of your turn, if you don’t have a <c=card>Salvager System</c> in your hand, gain one.";
+
         public override void OnReceiveArtifact(State state)
         {
             bool toggle = false;
@@ -63,5 +68,13 @@ namespace TheGreenDigiKepler.Kepler.Artifacts
             missileHit.status = null;
             return -int.MaxValue;
         }
+
+        public override List<Tooltip>? GetExtraTooltips() => new List<Tooltip>()
+        {
+            new TTCard()
+            {
+                card = (Card) new SalvagerSystemCard()
+            }
+        };
     }
 }
