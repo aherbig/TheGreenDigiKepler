@@ -74,10 +74,10 @@ namespace TheGreenDigiKepler
             ("TheGreenDigi.Kepler.Ship.Starter",
                 Kepler.GlobalName,
                 new ExternalCard[] { BasicMineCard ?? throw new Exception(), BasicDroneCard ?? throw new Exception()},
-                new ExternalArtifact[] { SalvagerSystem ?? throw new Exception() },
+                new ExternalArtifact[] { SalvagerSystemArtifact ?? throw new Exception() },
                 new Type[] { typeof(DodgeColorless), typeof(DroneshiftColorless)} ,
                 new Type[] { typeof(ShieldPrep) },
-                exclusiveArtifacts: new ExternalArtifact[] { SalvagerSystem ?? throw new Exception() }
+                exclusiveArtifacts: new ExternalArtifact[] { SalvagerSystemArtifact ?? throw new Exception() }
             );
 
             starter.AddLocalisation("Kepler", "Eat missiles and have fun.");
@@ -130,78 +130,109 @@ namespace TheGreenDigiKepler
                 ExternalSprite.GetRaw((int)Spr.parts_cockpit_conveyor)
             );
         }
+    }
 
+    public partial class KeplerShipManifest : ISpriteManifest
+    {
+        private ExternalSprite? KeplerSprite { get; set; }
+        private ExternalSprite? Kepler2Sprite { get; set; }
+        private ExternalSprite? SalvageNetSprite { get; set; }
+
+        public void LoadManifest(ISpriteRegistry artRegistry)
+        {
+            {
+                var path = Path.Combine(ModRootFolder.FullName, "Sprites", "icons", Path.GetFileName("missile_armor_part.png"));
+                var armorSprite = new ExternalSprite("TheGreenDigi.Kepler.Sprites.Icons.MissileArmor", new FileInfo(path));
+                if (!artRegistry.RegisterArt(armorSprite))
+                    throw new Exception("Cannot register sprite.");
+            }
+            {
+                var path = Path.Combine(ModRootFolder.FullName, "Sprites", "artifacts", Path.GetFileName("KeplerCannon.png"));
+                KeplerSprite = new ExternalSprite("TheGreenDigi.Kepler.Sprites.Artifacts.KeplerCannon", new FileInfo(path));
+                if (!artRegistry.RegisterArt(KeplerSprite))
+                    throw new Exception("Cannot register sprite.");
+            }
+            {
+                var path = Path.Combine(ModRootFolder.FullName, "Sprites", "artifacts", Path.GetFileName("KeplerCannon2.png"));
+                Kepler2Sprite = new ExternalSprite("TheGreenDigi.Kepler.Sprites.Artifacts.KeplerCannon2", new FileInfo(path));
+                if (!artRegistry.RegisterArt(Kepler2Sprite))
+                    throw new Exception("Cannot register sprite.");
+            }
+            {
+                var path = Path.Combine(ModRootFolder.FullName, "Sprites", "artifacts", Path.GetFileName("SalvageNet.png"));
+                SalvageNetSprite = new ExternalSprite("TheGreenDigi.Kepler.Sprites.Artifacts.SalvageNet", new FileInfo(path));
+                if (!artRegistry.RegisterArt(SalvageNetSprite))
+                    throw new Exception("Cannot register sprite.");
+            }
+        }
     }
 
     public partial class KeplerShipManifest : IArtifactManifest
     {
-        private ExternalArtifact? SalvagerSystem { get; set; }
-        private ExternalArtifact? SalvagerSystemTwo { get; set; }
-        private ExternalArtifact? SalvageNet { get; set; }
+        private ExternalArtifact? SalvagerSystemArtifact { get; set; }
+        private ExternalArtifact? SalvagerSystemTwoArtifact { get; set; }
+        private ExternalArtifact? SalvageNetArtifact { get; set; }
 
         public void LoadManifest(IArtifactRegistry registry)
         {
             {
-                var spr = ExternalSprite.GetRaw((int)Spr.artifacts_AresCannon);
-                SalvagerSystem = new ExternalArtifact
+                SalvagerSystemArtifact = new ExternalArtifact
                 (
                     "TheGreenDigi.Kepler.Artifact.SalvagerSystem",
                     typeof(SalvagerSystem),
-                    spr,
+                    KeplerSprite ?? throw new Exception(),
                     new ExternalGlossary[0],
                     null,
                     null
                 );
 
-                SalvagerSystem.AddLocalisation
+                SalvagerSystemArtifact.AddLocalisation
                 (
                     "Salvager Systems",
                     "If a missile were to hit your inactive missile bay, it is destroyed instead. " +
                     "At the start of your turn, if you don’t have a <c=card>Salvager System</c> in your hand, gain one."
                 );
 
-                registry.RegisterArtifact(SalvagerSystem);
+                registry.RegisterArtifact(SalvagerSystemArtifact);
             }
             {
-                var spr = ExternalSprite.GetRaw((int)Spr.artifacts_AresCannonV2);
-                SalvagerSystemTwo = new ExternalArtifact
+                SalvagerSystemTwoArtifact = new ExternalArtifact
                 (
                     "TheGreenDigi.Kepler.Artifact.SalvagerSystemV2",
                     typeof(SalvagerSystemsTwo),
-                    spr,
+                    Kepler2Sprite ?? throw new Exception(),
                     new ExternalGlossary[0],
                     null,
                     null
                 );
 
-                SalvagerSystemTwo.AddLocalisation
+                SalvagerSystemTwoArtifact.AddLocalisation
                 (
                     "Salvager Systems V2",
                     "Replaces <c=artifact>Salvager Systems</c>.\nIf a missile were to hit your inactive missile bay, it is destroyed instead. " +
                     "At the start of your turn, if you don’t have a <c=card>Swarm Mode</c> in your hand, gain one."
                 );
 
-                registry.RegisterArtifact(SalvagerSystemTwo);
+                registry.RegisterArtifact(SalvagerSystemTwoArtifact);
             }
             {
-                var spr = ExternalSprite.GetRaw((int)Spr.artifacts_MultiThreading_off);
-                SalvageNet = new ExternalArtifact
+                SalvageNetArtifact = new ExternalArtifact
                 (
                     "TheGreenDigi.Kepler.Artifact.SalvageNet",
                     typeof(SalvageNet),
-                    spr,
+                    SalvageNetSprite ?? throw new Exception(),
                     new ExternalGlossary[0],
                     null,
                     null
                 );
 
-                SalvageNet.AddLocalisation
+                SalvageNetArtifact.AddLocalisation
                 (
                     "Salvage Net",
                     "If a missile were to hit your inactive missile bay, it is instead removed without destroying it, turned around, and added to your hand in a <c=card>Relaunch</c>."
                 );
 
-                registry.RegisterArtifact(SalvageNet);
+                registry.RegisterArtifact(SalvageNetArtifact);
             }
         }
     }

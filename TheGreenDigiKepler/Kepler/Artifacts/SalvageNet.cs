@@ -4,11 +4,6 @@ namespace TheGreenDigiKepler.Kepler.Artifacts
 {
     public class SalvageNet : Artifact
     {
-        public override Spr GetSprite()
-        {
-            return Spr.artifacts_MultiThreading_off;
-        }
-        
         public override int ModifyBaseMissileDamage(State state, Combat? combat, bool targetPlayer)
         {
             if (!targetPlayer || combat?.currentCardAction is not AMissileHit missileHit)

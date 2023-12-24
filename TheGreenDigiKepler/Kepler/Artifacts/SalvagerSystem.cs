@@ -34,11 +34,6 @@ namespace TheGreenDigiKepler.Kepler.Artifacts
             combat.Queue(new KeplerSalvagerSystemDelayedCardAction());
         }
 
-        public override Spr GetSprite()
-        {
-            return Spr.artifacts_AresCannon;
-        }
-
         public override int ModifyBaseMissileDamage(State state, Combat? combat, bool targetPlayer)
         {
             if (!targetPlayer || combat?.currentCardAction is not AMissileHit missileHit)

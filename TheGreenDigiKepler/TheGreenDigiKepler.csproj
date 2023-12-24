@@ -13,4 +13,19 @@
       <PackageReference Include="Shockah.CobaltCoreModBuildConfig" Version="2.0.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Content Include="Sprites\artifacts\KeplerCannon.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <Content Include="Sprites\artifacts\KeplerCannon2.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <Content Include="Sprites\artifacts\SalvageNet.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <Content Include="Sprites\icons\missile_armor_part.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
 </Project>
