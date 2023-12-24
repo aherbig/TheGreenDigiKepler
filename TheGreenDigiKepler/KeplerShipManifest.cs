@@ -80,7 +80,7 @@ namespace TheGreenDigiKepler
                 exclusiveArtifacts: new ExternalArtifact[] { SalvagerSystemArtifact ?? throw new Exception() }
             );
 
-            starter.AddLocalisation("Kepler", "Eat missiles and have fun.");
+            starter.AddLocalisation("Kepler", "A missile war ship with two bays that can be manually toggled.");
 
             registry.RegisterStartership(starter);
         }
