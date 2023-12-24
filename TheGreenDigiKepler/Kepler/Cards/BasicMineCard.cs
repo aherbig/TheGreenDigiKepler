@@ -19,9 +19,7 @@
                     break;
 
                 case Upgrade.B:
-                    list.Add(new ASpawn { thing = new SpaceMine(), disabled = flipped });
-                    list.Add(new ADummyAction());
-                    list.Add(new ASpawn { thing = new Asteroid { bubbleShield = true }, disabled = !flipped });
+                    list.Add(new ASpawn { thing = new SpaceMine() { bubbleShield = true} });
                     break;
             }
 
@@ -35,13 +33,8 @@
                 Upgrade.A => 1,
                 _ => 2
             },
-            art = new Spr?(upgrade switch
-            {
-                Upgrade.B => flipped ? Spr.cards_Adaptability_Bottom : Spr.cards_Adaptability_Top,
-                _ => Spr.cards_colorless
-            }),
+            art = new Spr?(Spr.cards_colorless),
             artTint = "ffffff",
-            floppable = upgrade == Upgrade.B,
         };
     }
 }
