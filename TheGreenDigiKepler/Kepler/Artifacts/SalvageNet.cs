@@ -36,5 +36,13 @@ namespace TheGreenDigiKepler.Kepler.Artifacts
             });
             return 0;
         }
+
+        public override List<Tooltip>? GetExtraTooltips() => new List<Tooltip>()
+        {
+            new TTCard()
+            {
+                card = new RelaunchCard()
+            }
+        };
     }
 }
