@@ -77,7 +77,7 @@ namespace TheGreenDigiKepler
                 new ExternalArtifact[] { SalvagerSystemArtifact ?? throw new Exception() },
                 new Type[] { typeof(DodgeColorless), typeof(DroneshiftColorless)} ,
                 new Type[] { typeof(ShieldPrep) },
-                exclusiveArtifacts: new ExternalArtifact[] { SalvagerSystemArtifact ?? throw new Exception() }
+                exclusiveArtifacts: new ExternalArtifact[] { SalvagerSystemArtifact ?? throw new Exception(), SalvagerSystemTwoArtifact ?? throw new Exception(), SalvageNetArtifact ?? throw new Exception() }
             );
 
             starter.AddLocalisation("Kepler", "A missile war ship with two bays that can be manually toggled.");
