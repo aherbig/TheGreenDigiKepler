@@ -2,8 +2,19 @@
 
 namespace TheGreenDigiKepler.Kepler.Artifacts
 {
+    [ArtifactMeta(owner = Deck.colorless, pools = new ArtifactPool[] {ArtifactPool.Common}, unremovable = true)]
     public class MissileTractorBeam : Artifact
     {
+        public override void OnReceiveArtifact(State s)
+        {
+            foreach (Artifact artifact in s.artifacts)
+            {
+                if (artifact is MissilePDS)
+                    artifact.OnRemoveArtifact(s);
+            }
+            s.artifacts.RemoveAll((Predicate<Artifact>) (r => r is MissilePDS));
+        }
+
         public override int ModifyBaseMissileDamage(State state, Combat? combat, bool targetPlayer)
         {
             if (!targetPlayer || combat?.currentCardAction is not AMissileHit missileHit)
@@ -34,7 +45,9 @@ namespace TheGreenDigiKepler.Kepler.Artifacts
                 card = new RelaunchCard { missileType = missile.missileType },
                 destination = CardDestination.Hand
             });
-            return 0;
+            missileHit.weaken = false;
+            missileHit.status = null;
+            return -int.MaxValue;
         }
 
         public override List<Tooltip>? GetExtraTooltips() => new List<Tooltip>()
