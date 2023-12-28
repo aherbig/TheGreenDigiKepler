@@ -6,10 +6,6 @@ namespace TheGreenDigiKepler.Kepler.Artifacts
     [ArtifactMeta(owner = Deck.colorless, pools = new ArtifactPool[] {ArtifactPool.EventOnly}, unremovable = true)]
     public class KeplerBay : Artifact
     {
-        public override string Name() => "Kepler Bay";
-        public override string Description() => "If a missile were to hit your inactive missile bay, it is destroyed instead. " +
-                                                "At the start of your turn, if you don’t have a <c=card>Toggle Bay</c> in your hand, gain one.";
-
         public override void OnReceiveArtifact(State state)
         {
             bool toggle = true;

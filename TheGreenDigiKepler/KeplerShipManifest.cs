@@ -75,10 +75,10 @@ namespace TheGreenDigiKepler
             ($"{typeof(KeplerShipManifest).Namespace}.Ship.Starter",
                 Kepler.GlobalName,
                 new [] { BasicMineCard ?? throw new Exception(), BasicDroneCard ?? throw new Exception()},
-                new [] { SalvagerSystemArtifact ?? throw new Exception() },
+                new [] { KeplerBayArtifact ?? throw new Exception() },
                 new [] { typeof(DodgeColorless), typeof(DroneshiftColorless)} ,
                 new [] { typeof(ShieldPrep) },
-                exclusiveArtifacts: new [] { SalvagerSystemArtifact ?? throw new Exception(), SalvagerSystemTwoArtifact ?? throw new Exception(), SalvageNetArtifact ?? throw new Exception() }
+                exclusiveArtifacts: new [] { KeplerBayArtifact ?? throw new Exception(), KeplerBayV2Artifact ?? throw new Exception(), MissileTractorBeam ?? throw new Exception() }
             );
 
             starter.AddLocalisation("Kepler", "An old war ship with two missile bays and a missile defense system.");
@@ -158,70 +158,73 @@ namespace TheGreenDigiKepler
 
     public partial class KeplerShipManifest : IArtifactManifest
     {
-        private ExternalArtifact? SalvagerSystemArtifact { get; set; }
-        private ExternalArtifact? SalvagerSystemTwoArtifact { get; set; }
-        private ExternalArtifact? SalvageNetArtifact { get; set; }
+        private ExternalArtifact? KeplerBayArtifact { get; set; }
+        private ExternalArtifact? KeplerBayV2Artifact { get; set; }
+        private ExternalArtifact? MissileTractorBeam { get; set; }
 
         public void LoadManifest(IArtifactRegistry registry)
         {
             {
-                SalvagerSystemArtifact = new ExternalArtifact
+                Type artifactType = typeof(KeplerBay);
+                KeplerBayArtifact = new ExternalArtifact
                 (
-                    $"{typeof(KeplerShipManifest).Namespace}.Artifacts.Bay",
-                    typeof(KeplerBay),
+                    artifactType.FullName ?? throw new Exception(),
+                    artifactType,
                     KeplerSprites.Artifacts.Bay,
                     new ExternalGlossary[0],
                     null,
                     null
                 );
 
-                SalvagerSystemArtifact.AddLocalisation
+                KeplerBayArtifact.AddLocalisation
                 (
                     "Kepler Bay",
                     "If a missile were to hit your inactive missile bay, it is destroyed instead. " +
-                    "At the start of your turn, if you don’t have a <c=card>Salvager System</c> in your hand, gain one."
+                    "At the start of your turn, if you don’t have a <c=card>Toggle Bay</c> in your hand, gain one."
                 );
 
-                registry.RegisterArtifact(SalvagerSystemArtifact);
+                registry.RegisterArtifact(KeplerBayArtifact);
             }
             {
-                SalvagerSystemTwoArtifact = new ExternalArtifact
+                Type artifactType = typeof(KeplerBayV2);
+                KeplerBayV2Artifact = new ExternalArtifact
                 (
-                    $"{typeof(KeplerShipManifest).Namespace}.Artifacts.BayV2",
-                    typeof(KeplerBayV2),
+                    artifactType.FullName ?? throw new Exception(),
+                    artifactType,
                     KeplerSprites.Artifacts.BayV2,
                     new ExternalGlossary[0],
                     null,
                     null
                 );
 
-                SalvagerSystemTwoArtifact.AddLocalisation
+                KeplerBayV2Artifact.AddLocalisation
                 (
                     "Kepler Bay V2",
                     "Replaces <c=artifact>Kepler Bay</c>.\nIf a missile were to hit your inactive missile bay, it is destroyed instead. " +
                     "At the start of your turn, if you don’t have a <c=card>Swarm Mode</c> in your hand, gain one."
                 );
 
-                registry.RegisterArtifact(SalvagerSystemTwoArtifact);
+                registry.RegisterArtifact(KeplerBayV2Artifact);
             }
             {
-                SalvageNetArtifact = new ExternalArtifact
+                Type artifactType = typeof(MissileTractorBeam);
+                MissileTractorBeam = new ExternalArtifact
                 (
-                    $"{typeof(KeplerShipManifest).Namespace}.Artifacts.MissileTractorBeam",
-                    typeof(MissileTractorBeam),
+                    artifactType.FullName ?? throw new Exception(),
+                    artifactType,
                     KeplerSprites.Artifacts.MissileTractorBeam,
                     new ExternalGlossary[0],
                     null,
                     null
                 );
 
-                SalvageNetArtifact.AddLocalisation
+                MissileTractorBeam.AddLocalisation
                 (
-                    "Salvage Net",
+                    "Missile Tractor Beam",
                     "If a missile were to hit your inactive missile bay, it is instead removed without destroying it, turned around, and added to your hand in a <c=card>Relaunch</c>."
                 );
 
-                registry.RegisterArtifact(SalvageNetArtifact);
+                registry.RegisterArtifact(MissileTractorBeam);
             }
         }
     }
