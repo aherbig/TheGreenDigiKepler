@@ -3,6 +3,7 @@ using CobaltCoreModding.Definitions.ExternalItems;
 using CobaltCoreModding.Definitions.ModContactPoints;
 using CobaltCoreModding.Definitions.ModManifests;
 using Microsoft.Extensions.Logging;
+using TheGreenDigiKepler.Kepler;
 using TheGreenDigiKepler.Kepler.Artifacts;
 using TheGreenDigiKepler.Kepler.Cards;
 
@@ -134,35 +135,18 @@ namespace TheGreenDigiKepler
 
     public partial class KeplerShipManifest : ISpriteManifest
     {
-        private ExternalSprite? KeplerSprite { get; set; }
-        private ExternalSprite? Kepler2Sprite { get; set; }
-        private ExternalSprite? SalvageNetSprite { get; set; }
-
         public void LoadManifest(ISpriteRegistry artRegistry)
         {
+            KeplerSprites.ModRootFolder = ModRootFolder;
+            ExternalSprite[] spritesToRegister = {
+                KeplerSprites.Artifacts.KeplerCannon,
+                KeplerSprites.Artifacts.KeplerCannon2,
+                KeplerSprites.Artifacts.SalvageNet
+            };
+
+            if (spritesToRegister.Any(sprite => !artRegistry.RegisterArt(sprite)))
             {
-                var path = Path.Combine(ModRootFolder.FullName, "Sprites", "icons", Path.GetFileName("missile_armor_part.png"));
-                var armorSprite = new ExternalSprite("TheGreenDigi.Kepler.Sprites.Icons.MissileArmor", new FileInfo(path));
-                if (!artRegistry.RegisterArt(armorSprite))
-                    throw new Exception("Cannot register sprite.");
-            }
-            {
-                var path = Path.Combine(ModRootFolder.FullName, "Sprites", "artifacts", Path.GetFileName("KeplerCannon.png"));
-                KeplerSprite = new ExternalSprite("TheGreenDigi.Kepler.Sprites.Artifacts.KeplerCannon", new FileInfo(path));
-                if (!artRegistry.RegisterArt(KeplerSprite))
-                    throw new Exception("Cannot register sprite.");
-            }
-            {
-                var path = Path.Combine(ModRootFolder.FullName, "Sprites", "artifacts", Path.GetFileName("KeplerCannon2.png"));
-                Kepler2Sprite = new ExternalSprite("TheGreenDigi.Kepler.Sprites.Artifacts.KeplerCannon2", new FileInfo(path));
-                if (!artRegistry.RegisterArt(Kepler2Sprite))
-                    throw new Exception("Cannot register sprite.");
-            }
-            {
-                var path = Path.Combine(ModRootFolder.FullName, "Sprites", "artifacts", Path.GetFileName("SalvageNet.png"));
-                SalvageNetSprite = new ExternalSprite("TheGreenDigi.Kepler.Sprites.Artifacts.SalvageNet", new FileInfo(path));
-                if (!artRegistry.RegisterArt(SalvageNetSprite))
-                    throw new Exception("Cannot register sprite.");
+                throw new Exception("Cannot register sprite.");
             }
         }
     }
@@ -180,7 +164,7 @@ namespace TheGreenDigiKepler
                 (
                     "TheGreenDigi.Kepler.Artifact.SalvagerSystem",
                     typeof(SalvagerSystem),
-                    KeplerSprite ?? throw new Exception(),
+                    KeplerSprites.Artifacts.KeplerCannon,
                     new ExternalGlossary[0],
                     null,
                     null
@@ -200,7 +184,7 @@ namespace TheGreenDigiKepler
                 (
                     "TheGreenDigi.Kepler.Artifact.SalvagerSystemV2",
                     typeof(SalvagerSystemsTwo),
-                    Kepler2Sprite ?? throw new Exception(),
+                    KeplerSprites.Artifacts.KeplerCannon2,
                     new ExternalGlossary[0],
                     null,
                     null
@@ -220,7 +204,7 @@ namespace TheGreenDigiKepler
                 (
                     "TheGreenDigi.Kepler.Artifact.SalvageNet",
                     typeof(SalvageNet),
-                    SalvageNetSprite ?? throw new Exception(),
+                    KeplerSprites.Artifacts.SalvageNet,
                     new ExternalGlossary[0],
                     null,
                     null
