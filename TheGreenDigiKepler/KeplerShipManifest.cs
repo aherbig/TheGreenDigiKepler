@@ -60,7 +60,7 @@ namespace TheGreenDigiKepler
                     hullMax = 7,
                     shieldMaxBase = 3
                 },
-                new ExternalPart[] { MissileBay, Cockpit, Cannon, MissileBay },
+                new [] { MissileBay, Cockpit, Cannon, MissileBay },
                 ExternalSprite.GetRaw((int)Spr.parts_chassis_boxy),
                 null
             );
@@ -74,11 +74,11 @@ namespace TheGreenDigiKepler
             var starter = new ExternalStarterShip
             ("TheGreenDigi.Kepler.Ship.Starter",
                 Kepler.GlobalName,
-                new ExternalCard[] { BasicMineCard ?? throw new Exception(), BasicDroneCard ?? throw new Exception()},
-                new ExternalArtifact[] { SalvagerSystemArtifact ?? throw new Exception() },
-                new Type[] { typeof(DodgeColorless), typeof(DroneshiftColorless)} ,
-                new Type[] { typeof(ShieldPrep) },
-                exclusiveArtifacts: new ExternalArtifact[] { SalvagerSystemArtifact ?? throw new Exception(), SalvagerSystemTwoArtifact ?? throw new Exception(), SalvageNetArtifact ?? throw new Exception() }
+                new [] { BasicMineCard ?? throw new Exception(), BasicDroneCard ?? throw new Exception()},
+                new [] { SalvagerSystemArtifact ?? throw new Exception() },
+                new [] { typeof(DodgeColorless), typeof(DroneshiftColorless)} ,
+                new [] { typeof(ShieldPrep) },
+                exclusiveArtifacts: new [] { SalvagerSystemArtifact ?? throw new Exception(), SalvagerSystemTwoArtifact ?? throw new Exception(), SalvageNetArtifact ?? throw new Exception() }
             );
 
             starter.AddLocalisation("Kepler", "A missile war ship with two bays that can be manually toggled.");
@@ -97,8 +97,8 @@ namespace TheGreenDigiKepler
                     damageModifier = PDamMod.none,
                     type = PType.missiles,
                 },
-                ExternalSprite.GetRaw((int)Spr.parts_missiles_ancient),
-                ExternalSprite.GetRaw((int)Spr.parts_missiles_gemini_off)
+                KeplerSprites.Parts.BayActive,
+                KeplerSprites.Parts.BayInactive
             );
         }
 
@@ -113,7 +113,7 @@ namespace TheGreenDigiKepler
                     damageModifier = PDamMod.none,
                     type = PType.cannon,
                 },
-                ExternalSprite.GetRaw((int)Spr.parts_cannon_conveyor)
+                KeplerSprites.Parts.Cannon
             );
         }
 
@@ -128,7 +128,7 @@ namespace TheGreenDigiKepler
                     damageModifier = PDamMod.none,
                     type = PType.cockpit,
                 },
-                ExternalSprite.GetRaw((int)Spr.parts_cockpit_conveyor)
+                KeplerSprites.Parts.Cockpit
             );
         }
     }
@@ -141,7 +141,11 @@ namespace TheGreenDigiKepler
             ExternalSprite[] spritesToRegister = {
                 KeplerSprites.Artifacts.KeplerCannon,
                 KeplerSprites.Artifacts.KeplerCannon2,
-                KeplerSprites.Artifacts.SalvageNet
+                KeplerSprites.Artifacts.SalvageNet,
+                KeplerSprites.Parts.Cannon,
+                KeplerSprites.Parts.Cockpit,
+                KeplerSprites.Parts.BayActive,
+                KeplerSprites.Parts.BayInactive,
             };
 
             if (spritesToRegister.Any(sprite => !artRegistry.RegisterArt(sprite)))

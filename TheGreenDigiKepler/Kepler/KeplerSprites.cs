@@ -16,9 +16,21 @@ namespace TheGreenDigiKepler.Kepler
 
         public static class Artifacts
         {
-            public static ExternalSprite KeplerCannon { get; } = LoadFromFile(Path.Combine("artifacts", Path.GetFileName("KeplerCannon.png")));
-            public static ExternalSprite KeplerCannon2 { get; } = LoadFromFile(Path.Combine("artifacts", Path.GetFileName("KeplerCannon2.png")));
-            public static ExternalSprite SalvageNet { get; } = LoadFromFile(Path.Combine("artifacts", Path.GetFileName("SalvageNet.png")));
+            private static string ArtifactPathForFileName(string fileName) => Path.Combine("artifacts", Path.GetFileName(fileName));
+
+            public static ExternalSprite KeplerCannon { get; } = LoadFromFile(ArtifactPathForFileName("KeplerCannon.png"));
+            public static ExternalSprite KeplerCannon2 { get; } = LoadFromFile(ArtifactPathForFileName("KeplerCannon2.png"));
+            public static ExternalSprite SalvageNet { get; } = LoadFromFile(ArtifactPathForFileName("SalvageNet.png"));
+        }
+        
+        public static class Parts
+        {
+            private static string PartPathForFileName(string fileName) => Path.Combine("parts", Path.GetFileName(fileName));
+
+            public static ExternalSprite Cannon { get; } = LoadFromFile(PartPathForFileName("KeplerParts_Cannon.png"));
+            public static ExternalSprite Cockpit { get; } = LoadFromFile(PartPathForFileName("KeplerParts_Cockpit.png"));
+            public static ExternalSprite BayActive { get; } = LoadFromFile(PartPathForFileName("KeplerParts_BayActive.png"));
+            public static ExternalSprite BayInactive { get; } = LoadFromFile(PartPathForFileName("KeplerParts_BayInactive.png"));
         }
     }
 }

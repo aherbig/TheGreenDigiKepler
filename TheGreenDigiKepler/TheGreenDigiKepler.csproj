@@ -14,18 +14,27 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="Sprites\artifacts\KeplerCannon.png">
+      <None Include="Sprites\artifacts\KeplerCannon.png">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </Content>
-      <Content Include="Sprites\artifacts\KeplerCannon2.png">
+      </None>
+      <None Include="Sprites\artifacts\KeplerCannon2.png">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </Content>
-      <Content Include="Sprites\artifacts\SalvageNet.png">
+      </None>
+      <None Include="Sprites\artifacts\SalvageNet.png">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </Content>
-      <Content Include="Sprites\icons\missile_armor_part.png">
+      </None>
+      <None Update="Sprites\parts\KeplerParts_BayActive.png">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </Content>
+      </None>
+      <None Update="Sprites\parts\KeplerParts_BayInactive.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Sprites\parts\KeplerParts_Cannon.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Sprites\parts\KeplerParts_Cockpit.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
 </Project>
