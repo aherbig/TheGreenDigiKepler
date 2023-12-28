@@ -18,9 +18,10 @@ namespace TheGreenDigiKepler.Kepler
         {
             private static string ArtifactPathForFileName(string fileName) => Path.Combine("artifacts", Path.GetFileName(fileName));
 
-            public static ExternalSprite KeplerCannon { get; } = LoadFromFile(ArtifactPathForFileName("KeplerCannon.png"));
-            public static ExternalSprite KeplerCannon2 { get; } = LoadFromFile(ArtifactPathForFileName("KeplerCannon2.png"));
-            public static ExternalSprite SalvageNet { get; } = LoadFromFile(ArtifactPathForFileName("SalvageNet.png"));
+            public static ExternalSprite Bay { get; } = LoadFromFile(ArtifactPathForFileName("KeplerArtifacts_Bay.png"));
+            public static ExternalSprite BayV2 { get; } = LoadFromFile(ArtifactPathForFileName("KeplerArtifacts_BayV2.png"));
+            public static ExternalSprite MissileTractorBeam { get; } = LoadFromFile(ArtifactPathForFileName("KeplerArtifacts_MissileTractorBeam.png"));
+            public static ExternalSprite MissilePDS { get; } = LoadFromFile(ArtifactPathForFileName("KeplerArtifacts_MissilePDS.png"));
         }
         
         public static class Parts

@@ -139,9 +139,9 @@ namespace TheGreenDigiKepler
         {
             KeplerSprites.ModRootFolder = ModRootFolder;
             ExternalSprite[] spritesToRegister = {
-                KeplerSprites.Artifacts.KeplerCannon,
-                KeplerSprites.Artifacts.KeplerCannon2,
-                KeplerSprites.Artifacts.SalvageNet,
+                KeplerSprites.Artifacts.Bay,
+                KeplerSprites.Artifacts.BayV2,
+                KeplerSprites.Artifacts.MissileTractorBeam,
                 KeplerSprites.Parts.Chassis,
                 KeplerSprites.Parts.Cannon,
                 KeplerSprites.Parts.Cockpit,
@@ -169,7 +169,7 @@ namespace TheGreenDigiKepler
                 (
                     $"{typeof(KeplerShipManifest).Namespace}.Artifacts.SalvagerSystem",
                     typeof(SalvagerSystem),
-                    KeplerSprites.Artifacts.KeplerCannon,
+                    KeplerSprites.Artifacts.Bay,
                     new ExternalGlossary[0],
                     null,
                     null
@@ -189,7 +189,7 @@ namespace TheGreenDigiKepler
                 (
                     $"{typeof(KeplerShipManifest).Namespace}.Artifacts.SalvagerSystemV2",
                     typeof(SalvagerSystemsTwo),
-                    KeplerSprites.Artifacts.KeplerCannon2,
+                    KeplerSprites.Artifacts.BayV2,
                     new ExternalGlossary[0],
                     null,
                     null
@@ -209,7 +209,7 @@ namespace TheGreenDigiKepler
                 (
                     $"{typeof(KeplerShipManifest).Namespace}.Artifacts.SalvageNet",
                     typeof(SalvageNet),
-                    KeplerSprites.Artifacts.SalvageNet,
+                    KeplerSprites.Artifacts.MissileTractorBeam,
                     new ExternalGlossary[0],
                     null,
                     null
