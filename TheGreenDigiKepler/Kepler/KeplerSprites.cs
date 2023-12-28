@@ -34,5 +34,14 @@ namespace TheGreenDigiKepler.Kepler
             public static ExternalSprite BayActive { get; } = LoadFromFile(PartPathForFileName("KeplerParts_BayActive.png"));
             public static ExternalSprite BayInactive { get; } = LoadFromFile(PartPathForFileName("KeplerParts_BayInactive.png"));
         }
+
+        public static class Cards
+        {
+            private static string CardPathForFileName(string fileName) => Path.Combine("cards", Path.GetFileName(fileName));
+
+            public static ExternalSprite BasicDrone { get; } = LoadFromFile(CardPathForFileName("BasicDrone.png"));
+            public static ExternalSprite KeplerCardArt { get; } = LoadFromFile(CardPathForFileName("KeplerCardArt.png"));
+            public static ExternalSprite KeplerCardFrame { get; } = LoadFromFile(CardPathForFileName("KeplerCardFrame.png"));
+        }
     }
 }

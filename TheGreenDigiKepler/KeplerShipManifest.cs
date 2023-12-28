@@ -158,6 +158,9 @@ namespace TheGreenDigiKepler
                 KeplerSprites.Parts.Cockpit,
                 KeplerSprites.Parts.BayActive,
                 KeplerSprites.Parts.BayInactive,
+                KeplerSprites.Cards.BasicDrone,
+                KeplerSprites.Cards.KeplerCardArt,
+                KeplerSprites.Cards.KeplerCardFrame,
             };
 
             if (spritesToRegister.Any(sprite => !artRegistry.RegisterArt(sprite)))
