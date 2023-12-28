@@ -241,7 +241,7 @@ namespace TheGreenDigiKepler
                     $"{typeof(KeplerShipManifest).Namespace}.Card.BasicMine",
                     typeof(BasicMineCard),
                     KeplerSprites.Cards.BasicDrone,
-                    KeplerDeck
+                    null
                 );
                 basicMineCard.AddLocalisation("Basic Mine");
                 registry.RegisterCard(basicMineCard);
@@ -253,7 +253,7 @@ namespace TheGreenDigiKepler
                     $"{typeof(KeplerShipManifest).Namespace}.Card.BasicDrone",
                     typeof(BasicDroneCard),
                     KeplerSprites.Cards.BasicDrone,
-                    KeplerDeck
+                    null
                 );
                 basicDroneCard.AddLocalisation("Basic Drone");
                 registry.RegisterCard(basicDroneCard);
