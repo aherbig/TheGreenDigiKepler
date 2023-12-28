@@ -16,14 +16,6 @@ namespace TheGreenDigiKepler.Kepler.Artifacts
                     artifact.OnRemoveArtifact(s);
             }
             s.artifacts.RemoveAll((Predicate<Artifact>) (r => r is KeplerBay));
-
-            foreach (Part shipPart in s.ship.parts)
-            {
-                if (shipPart is { type: PType.missiles })
-                {
-                    shipPart.active = true;
-                }
-            }
         }
 
         public override void OnTurnStart(State state, Combat combat)

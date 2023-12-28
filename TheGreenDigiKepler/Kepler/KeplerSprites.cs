@@ -28,11 +28,13 @@ namespace TheGreenDigiKepler.Kepler
         {
             private static string PartPathForFileName(string fileName) => Path.Combine("parts", Path.GetFileName(fileName));
 
-            public static ExternalSprite Chassis { get; } = LoadFromFile(PartPathForFileName("Kepler_Chassis.png"));
-            public static ExternalSprite Cannon { get; } = LoadFromFile(PartPathForFileName("KeplerParts_Cannon.png"));
-            public static ExternalSprite Cockpit { get; } = LoadFromFile(PartPathForFileName("KeplerParts_Cockpit.png"));
-            public static ExternalSprite BayActive { get; } = LoadFromFile(PartPathForFileName("KeplerParts_BayActive.png"));
-            public static ExternalSprite BayInactive { get; } = LoadFromFile(PartPathForFileName("KeplerParts_BayInactive.png"));
+            public static ExternalSprite Chassis { get; } = LoadFromFile(PartPathForFileName("KeplerChassis.png"));
+            public static ExternalSprite Cannon { get; } = LoadFromFile(PartPathForFileName("KeplerCannon.png"));
+            public static ExternalSprite Cockpit { get; } = LoadFromFile(PartPathForFileName("KeplerCockpit.png"));
+            public static ExternalSprite LeftBayActive { get; } = LoadFromFile(PartPathForFileName("KeplerLeftActive.png"));
+            public static ExternalSprite LeftBayInactive { get; } = LoadFromFile(PartPathForFileName("KeplerLeftInactive.png"));
+            public static ExternalSprite RightBayActive { get; } = LoadFromFile(PartPathForFileName("KeplerRightActive.png"));
+            public static ExternalSprite RightBayInactive { get; } = LoadFromFile(PartPathForFileName("KeplerRightInactive.png"));
         }
 
         public static class Cards

@@ -19,32 +19,12 @@ namespace TheGreenDigiKepler
 
         private ExternalShip? Kepler { get; set; }
 
-        private ExternalPart? _missileBay;
-
-        private ExternalPart MissileBay
-        {
-            get { return _missileBay ??= CreateMissileBay(); }
-        }
-
-        private ExternalPart? _cockpit;
-
-        private ExternalPart Cockpit
-        {
-            get { return _cockpit ??= CreateCockpit(); }
-        }
-
-        private ExternalPart? _cannon;
-
-        private ExternalPart Cannon
-        {
-            get { return _cannon ??= CreateCannon(); }
-        }
-
         public void LoadManifest(IShipPartRegistry registry)
         {
-            registry.RegisterPart(MissileBay);
-            registry.RegisterPart(Cockpit);
-            registry.RegisterPart(Cannon);
+            registry.RegisterPart(KeplerParts.LeftMissileBay);
+            registry.RegisterPart(KeplerParts.Cockpit);
+            registry.RegisterPart(KeplerParts.Cannon);
+            registry.RegisterPart(KeplerParts.RightMissileBay);
         }
 
         public void LoadManifest(IShipRegistry shipRegistry)
@@ -60,7 +40,7 @@ namespace TheGreenDigiKepler
                     hullMax = 7,
                     shieldMaxBase = 3
                 },
-                new [] { MissileBay, Cockpit, Cannon, MissileBay },
+                new [] { KeplerParts.LeftMissileBay, KeplerParts.Cockpit, KeplerParts.Cannon, KeplerParts.RightMissileBay },
                 KeplerSprites.Parts.Chassis,
                 null
             );
@@ -95,52 +75,6 @@ namespace TheGreenDigiKepler
 
             registry.RegisterStartership(starter);
         }
-
-        private ExternalPart CreateMissileBay()
-        {
-            return new ExternalPart
-            (
-                $"{typeof(KeplerShipManifest).Namespace}.Ship.Parts.MissileBay",
-                new Part()
-                {
-                    active = false,
-                    damageModifier = PDamMod.none,
-                    type = PType.missiles,
-                },
-                KeplerSprites.Parts.BayActive,
-                KeplerSprites.Parts.BayInactive
-            );
-        }
-
-        private ExternalPart CreateCannon()
-        {
-            return new ExternalPart
-            (
-                $"{typeof(KeplerShipManifest).Namespace}.Ship.Parts.Cannon",
-                new Part()
-                {
-                    active = true,
-                    damageModifier = PDamMod.none,
-                    type = PType.cannon,
-                },
-                KeplerSprites.Parts.Cannon
-            );
-        }
-
-        private ExternalPart CreateCockpit()
-        {
-            return new ExternalPart
-            (
-                $"{typeof(KeplerShipManifest).Namespace}.Ship.Parts.Cockpit",
-                new Part()
-                {
-                    active = true,
-                    damageModifier = PDamMod.none,
-                    type = PType.cockpit,
-                },
-                KeplerSprites.Parts.Cockpit
-            );
-        }
     }
 
     public partial class KeplerShipManifest : ISpriteManifest
@@ -156,8 +90,10 @@ namespace TheGreenDigiKepler
                 KeplerSprites.Parts.Chassis,
                 KeplerSprites.Parts.Cannon,
                 KeplerSprites.Parts.Cockpit,
-                KeplerSprites.Parts.BayActive,
-                KeplerSprites.Parts.BayInactive,
+                KeplerSprites.Parts.LeftBayActive,
+                KeplerSprites.Parts.LeftBayInactive,
+                KeplerSprites.Parts.RightBayActive,
+                KeplerSprites.Parts.RightBayInactive,
                 KeplerSprites.Cards.BasicDrone,
                 KeplerSprites.Cards.KeplerCardArt,
                 KeplerSprites.Cards.KeplerCardFrame,

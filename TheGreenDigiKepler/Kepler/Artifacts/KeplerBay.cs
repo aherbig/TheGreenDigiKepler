@@ -6,19 +6,6 @@ namespace TheGreenDigiKepler.Kepler.Artifacts
     [ArtifactMeta(owner = Deck.colorless, pools = new ArtifactPool[] {ArtifactPool.EventOnly}, unremovable = true)]
     public class KeplerBay : Artifact
     {
-        public override void OnReceiveArtifact(State state)
-        {
-            bool toggle = true;
-            foreach (Part shipPart in state.ship.parts)
-            {
-                if (shipPart is { type: PType.missiles })
-                {
-                    shipPart.active = toggle;
-                    toggle = !toggle;
-                }
-            }
-        }
-
         public override void OnTurnStart(State state, Combat combat)
         {
             bool containsSalvagerCard = combat.hand.OfType<ToggleBayCard>().Any();
