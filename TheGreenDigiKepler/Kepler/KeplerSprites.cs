@@ -42,6 +42,7 @@ namespace TheGreenDigiKepler.Kepler
             public static ExternalSprite BasicDrone { get; } = LoadFromFile(CardPathForFileName("BasicDrone.png"));
             public static ExternalSprite KeplerCardArt { get; } = LoadFromFile(CardPathForFileName("KeplerCardArt.png"));
             public static ExternalSprite KeplerCardFrame { get; } = LoadFromFile(CardPathForFileName("KeplerCardFrame.png"));
+            public static ExternalSprite SwarmMode { get; } = LoadFromFile(CardPathForFileName("SwarmMode.png"));
         }
     }
 }

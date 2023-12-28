@@ -38,6 +38,9 @@
       <Content Update="Sprites\parts\KeplerParts_Cockpit.png">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
+      <Content Include="Sprites\cards\SwarmMode.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
       <Content Include="Sprites\parts\Kepler_Chassis.png">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>

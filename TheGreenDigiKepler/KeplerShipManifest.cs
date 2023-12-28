@@ -161,6 +161,7 @@ namespace TheGreenDigiKepler
                 KeplerSprites.Cards.BasicDrone,
                 KeplerSprites.Cards.KeplerCardArt,
                 KeplerSprites.Cards.KeplerCardFrame,
+                KeplerSprites.Cards.SwarmMode,
             };
 
             if (spritesToRegister.Any(sprite => !artRegistry.RegisterArt(sprite)))
@@ -286,7 +287,7 @@ namespace TheGreenDigiKepler
                 (
                     $"{typeof(KeplerShipManifest).Namespace}.Card.SwarmMode",
                     typeof(SwarmModeCard),
-                    KeplerSprites.Cards.KeplerCardArt,
+                    KeplerSprites.Cards.SwarmMode,
                     KeplerDeck
                 );
                 swarmmodeCard.AddLocalisation("Swarm Mode");
