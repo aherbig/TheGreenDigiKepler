@@ -271,14 +271,24 @@ namespace TheGreenDigiKepler
         public void LoadManifest(ICardRegistry registry)
         {
             {
-                var spr = ExternalSprite.GetRaw((int)Spr.cards_Deflection);
-                ExternalCard salvagerSystemCard = new ExternalCard($"{typeof(KeplerShipManifest).Namespace}.Card.ToggleBay", typeof(ToggleBayCard), spr, null);
+                ExternalCard salvagerSystemCard = new ExternalCard
+                (
+                    $"{typeof(KeplerShipManifest).Namespace}.Card.ToggleBay",
+                    typeof(ToggleBayCard),
+                    KeplerSprites.Cards.KeplerCardArt,
+                    null
+                );
                 salvagerSystemCard.AddLocalisation("Toggle Bay");
                 registry.RegisterCard(salvagerSystemCard);
             }
             {
-                var swarmmode_spr = ExternalSprite.GetRaw((int)Spr.cards_Deflection);
-                ExternalCard swarmmodeCard = new ExternalCard($"{typeof(KeplerShipManifest).Namespace}.Card.SwarmMode", typeof(SwarmModeCard), swarmmode_spr, null);
+                ExternalCard swarmmodeCard = new ExternalCard
+                (
+                    $"{typeof(KeplerShipManifest).Namespace}.Card.SwarmMode",
+                    typeof(SwarmModeCard),
+                    KeplerSprites.Cards.KeplerCardArt,
+                    null
+                );
                 swarmmodeCard.AddLocalisation("Swarm Mode");
                 registry.RegisterCard(swarmmodeCard);
             }
@@ -289,15 +299,25 @@ namespace TheGreenDigiKepler
                 registry.RegisterCard(relaunchCard);
             }
             {
-                var basicmine_spr = ExternalSprite.GetRaw((int)Spr.cards_colorless);
-                ExternalCard basicMineCard = new ExternalCard($"{typeof(KeplerShipManifest).Namespace}.Card.BasicMine", typeof(BasicMineCard), basicmine_spr, null);
+                ExternalCard basicMineCard = new ExternalCard
+                (
+                    $"{typeof(KeplerShipManifest).Namespace}.Card.BasicMine",
+                    typeof(BasicMineCard),
+                    KeplerSprites.Cards.BasicDrone,
+                    null
+                );
                 basicMineCard.AddLocalisation("Basic Mine");
                 registry.RegisterCard(basicMineCard);
                 BasicMineCard = basicMineCard;
             }
             {
-                var basicdrone_spr = ExternalSprite.GetRaw((int)Spr.cards_colorless);
-                ExternalCard basicDroneCard = new ExternalCard($"{typeof(KeplerShipManifest).Namespace}.Card.BasicDrone", typeof(BasicDroneCard), basicdrone_spr, null);
+                ExternalCard basicDroneCard = new ExternalCard
+                (
+                    $"{typeof(KeplerShipManifest).Namespace}.Card.BasicDrone",
+                    typeof(BasicDroneCard),
+                    KeplerSprites.Cards.BasicDrone,
+                    null
+                );
                 basicDroneCard.AddLocalisation("Basic Drone");
                 registry.RegisterCard(basicDroneCard);
                 BasicDroneCard = basicDroneCard;

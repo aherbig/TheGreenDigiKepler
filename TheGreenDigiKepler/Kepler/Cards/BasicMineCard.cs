@@ -33,8 +33,6 @@
                 Upgrade.A => 1,
                 _ => 2
             },
-            art = new Spr?(Spr.cards_colorless),
-            artTint = "ffffff",
         };
     }
 }

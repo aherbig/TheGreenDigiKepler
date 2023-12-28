@@ -12,8 +12,7 @@
             singleUse = true,
             temporary = true,
             flippable = true,
-            description = "Both missile bays are active until next turn. <c=keyword>Flip to toggle.</c>",
-            art = new Spr?(Spr.cards_Terminal)
+            description = "Both missile bays are active until next turn. <c=keyword>Flip to toggle.</c>"
         };
 
         public override List<CardAction> GetActions(State s, Combat c) => new List<CardAction>()

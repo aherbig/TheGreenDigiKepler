@@ -7,8 +7,6 @@ namespace TheGreenDigiKepler.Kepler.Cards
     {
         public override string Name() => "Toggle Bay Card";
 
-        private static Spr card_sprite = Spr.cards_Deflection;
-
         public override List<CardAction> GetActions(State s, Combat c)
         {
             var list = new List<CardAction>();
@@ -26,7 +24,6 @@ namespace TheGreenDigiKepler.Kepler.Cards
         {
             description = "Toggle which missile bay is active.",
             cost = 0,
-            art = card_sprite,
             retain = true,
             temporary = true,
             singleUse = true,
