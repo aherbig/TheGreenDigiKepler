@@ -12,7 +12,7 @@ namespace TheGreenDigiKepler.Kepler.Artifacts
 
         public override void OnReceiveArtifact(State state)
         {
-            bool toggle = false;
+            bool toggle = true;
             foreach (Part shipPart in state.ship.parts)
             {
                 if (shipPart is { type: PType.missiles })
