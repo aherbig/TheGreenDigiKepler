@@ -81,7 +81,7 @@ namespace TheGreenDigiKepler
                 exclusiveArtifacts: new [] { SalvagerSystemArtifact ?? throw new Exception(), SalvagerSystemTwoArtifact ?? throw new Exception(), SalvageNetArtifact ?? throw new Exception() }
             );
 
-            starter.AddLocalisation("Kepler", "A missile war ship with two bays that can be manually toggled.");
+            starter.AddLocalisation("Kepler", "An old war ship with two missile bays and a missile defense system.");
 
             registry.RegisterStartership(starter);
         }
