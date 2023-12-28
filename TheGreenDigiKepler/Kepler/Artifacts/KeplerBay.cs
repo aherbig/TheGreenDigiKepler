@@ -4,11 +4,11 @@ using TheGreenDigiKepler.Kepler.Cards;
 namespace TheGreenDigiKepler.Kepler.Artifacts
 {
     [ArtifactMeta(owner = Deck.colorless, pools = new ArtifactPool[] {ArtifactPool.EventOnly}, unremovable = true)]
-    public class SalvagerSystem : Artifact
+    public class KeplerBay : Artifact
     {
-        public override string Name() => "Salvager Systems";
+        public override string Name() => "Kepler Bay";
         public override string Description() => "If a missile were to hit your inactive missile bay, it is destroyed instead. " +
-                                                "At the start of your turn, if you don’t have a <c=card>Salvager System</c> in your hand, gain one.";
+                                                "At the start of your turn, if you don’t have a <c=card>Toggle Bay</c> in your hand, gain one.";
 
         public override void OnReceiveArtifact(State state)
         {
@@ -25,7 +25,7 @@ namespace TheGreenDigiKepler.Kepler.Artifacts
 
         public override void OnTurnStart(State state, Combat combat)
         {
-            bool containsSalvagerCard = combat.hand.OfType<SalvagerSystemCard>().Any();
+            bool containsSalvagerCard = combat.hand.OfType<ToggleBayCard>().Any();
             if (containsSalvagerCard)
             {
                 return;
@@ -68,7 +68,7 @@ namespace TheGreenDigiKepler.Kepler.Artifacts
         {
             new TTCard()
             {
-                card = (Card) new SalvagerSystemCard()
+                card = (Card) new ToggleBayCard()
             }
         };
     }

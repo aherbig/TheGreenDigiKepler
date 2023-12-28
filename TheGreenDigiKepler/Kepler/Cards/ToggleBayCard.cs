@@ -3,9 +3,9 @@
 namespace TheGreenDigiKepler.Kepler.Cards
 {
     [CardMeta(deck = Deck.ares, dontOffer = true, rarity = Rarity.common)]
-    public class SalvagerSystemCard : Card
+    public class ToggleBayCard : Card
     {
-        public override string Name() => "Salvager System Card";
+        public override string Name() => "Toggle Bay Card";
 
         private static Spr card_sprite = Spr.cards_Deflection;
 

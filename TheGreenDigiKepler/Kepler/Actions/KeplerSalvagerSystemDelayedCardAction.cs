@@ -9,7 +9,7 @@ namespace TheGreenDigiKepler.Kepler.Actions
             bool flag = false;
             foreach (Card card in c.hand)
             {
-                if (card is SalvagerSystemCard)
+                if (card is ToggleBayCard)
                     flag = true;
             }
 
@@ -17,7 +17,7 @@ namespace TheGreenDigiKepler.Kepler.Actions
                 return;
             c.QueueImmediate(new AAddCard()
             {
-                card = new SalvagerSystemCard(),
+                card = new ToggleBayCard(),
                 destination = CardDestination.Hand
             });
         }

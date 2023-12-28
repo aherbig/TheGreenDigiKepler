@@ -4,23 +4,22 @@ using TheGreenDigiKepler.Kepler.Cards;
 namespace TheGreenDigiKepler.Kepler.Artifacts
 {
     [ArtifactMeta(owner = Deck.colorless, pools = new ArtifactPool[] {ArtifactPool.Boss}, unremovable = true)]
-    public class SalvagerSystemsTwo : Artifact
+    public class KeplerBayV2 : Artifact
     {
-        public override string Name() => "Salvager Systems V2";
-        public override string Description() => "Replaces <c=artifact>Salvager Systems</c>.\nIf a missile were to hit your inactive missile bay, it is destroyed instead. " +
+        public override string Name() => "Kepler Bay V2";
+        public override string Description() => "Replaces <c=artifact>Kepler Bay</c>.\nIf a missile were to hit your inactive missile bay, it is destroyed instead. " +
                                                 "At the start of your turn, if you don’t have a <c=card>Swarm Mode</c> in your hand, gain one.";
 
         private bool activeBayShouldBeTheFirstOne;
 
         public override void OnReceiveArtifact(State s)
         {
-            string artifactType = "SalvagerSystem";
             foreach (Artifact artifact in s.artifacts)
             {
-                if (artifact.Key() == artifactType)
+                if (artifact is KeplerBay)
                     artifact.OnRemoveArtifact(s);
             }
-            s.artifacts.RemoveAll((Predicate<Artifact>) (r => r.Key() == artifactType));
+            s.artifacts.RemoveAll((Predicate<Artifact>) (r => r is KeplerBay));
 
             foreach (Part shipPart in s.ship.parts)
             {

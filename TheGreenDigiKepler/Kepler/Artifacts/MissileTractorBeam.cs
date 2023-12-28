@@ -2,7 +2,7 @@
 
 namespace TheGreenDigiKepler.Kepler.Artifacts
 {
-    public class SalvageNet : Artifact
+    public class MissileTractorBeam : Artifact
     {
         public override int ModifyBaseMissileDamage(State state, Combat? combat, bool targetPlayer)
         {

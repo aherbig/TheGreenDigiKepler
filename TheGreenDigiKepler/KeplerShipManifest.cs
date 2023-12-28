@@ -167,8 +167,8 @@ namespace TheGreenDigiKepler
             {
                 SalvagerSystemArtifact = new ExternalArtifact
                 (
-                    $"{typeof(KeplerShipManifest).Namespace}.Artifacts.SalvagerSystem",
-                    typeof(SalvagerSystem),
+                    $"{typeof(KeplerShipManifest).Namespace}.Artifacts.Bay",
+                    typeof(KeplerBay),
                     KeplerSprites.Artifacts.Bay,
                     new ExternalGlossary[0],
                     null,
@@ -177,7 +177,7 @@ namespace TheGreenDigiKepler
 
                 SalvagerSystemArtifact.AddLocalisation
                 (
-                    "Salvager Systems",
+                    "Kepler Bay",
                     "If a missile were to hit your inactive missile bay, it is destroyed instead. " +
                     "At the start of your turn, if you don’t have a <c=card>Salvager System</c> in your hand, gain one."
                 );
@@ -187,8 +187,8 @@ namespace TheGreenDigiKepler
             {
                 SalvagerSystemTwoArtifact = new ExternalArtifact
                 (
-                    $"{typeof(KeplerShipManifest).Namespace}.Artifacts.SalvagerSystemV2",
-                    typeof(SalvagerSystemsTwo),
+                    $"{typeof(KeplerShipManifest).Namespace}.Artifacts.BayV2",
+                    typeof(KeplerBayV2),
                     KeplerSprites.Artifacts.BayV2,
                     new ExternalGlossary[0],
                     null,
@@ -197,8 +197,8 @@ namespace TheGreenDigiKepler
 
                 SalvagerSystemTwoArtifact.AddLocalisation
                 (
-                    "Salvager Systems V2",
-                    "Replaces <c=artifact>Salvager Systems</c>.\nIf a missile were to hit your inactive missile bay, it is destroyed instead. " +
+                    "Kepler Bay V2",
+                    "Replaces <c=artifact>Kepler Bay</c>.\nIf a missile were to hit your inactive missile bay, it is destroyed instead. " +
                     "At the start of your turn, if you don’t have a <c=card>Swarm Mode</c> in your hand, gain one."
                 );
 
@@ -207,8 +207,8 @@ namespace TheGreenDigiKepler
             {
                 SalvageNetArtifact = new ExternalArtifact
                 (
-                    $"{typeof(KeplerShipManifest).Namespace}.Artifacts.SalvageNet",
-                    typeof(SalvageNet),
+                    $"{typeof(KeplerShipManifest).Namespace}.Artifacts.MissileTractorBeam",
+                    typeof(MissileTractorBeam),
                     KeplerSprites.Artifacts.MissileTractorBeam,
                     new ExternalGlossary[0],
                     null,
@@ -235,8 +235,8 @@ namespace TheGreenDigiKepler
         {
             {
                 var spr = ExternalSprite.GetRaw((int)Spr.cards_Deflection);
-                ExternalCard salvagerSystemCard = new ExternalCard($"{typeof(KeplerShipManifest).Namespace}.Card.SalvagerSystem", typeof(SalvagerSystemCard), spr, null);
-                salvagerSystemCard.AddLocalisation("Salvager System");
+                ExternalCard salvagerSystemCard = new ExternalCard($"{typeof(KeplerShipManifest).Namespace}.Card.ToggleBay", typeof(ToggleBayCard), spr, null);
+                salvagerSystemCard.AddLocalisation("Toggle Bay");
                 registry.RegisterCard(salvagerSystemCard);
             }
             {
