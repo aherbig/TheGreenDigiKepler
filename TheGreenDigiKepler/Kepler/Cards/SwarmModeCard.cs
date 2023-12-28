@@ -1,6 +1,6 @@
 ﻿namespace TheGreenDigiKepler.Kepler.Cards
 {
-    [CardMeta(deck = Deck.ares, dontOffer = true, rarity = Rarity.common)]
+    [CardMeta(dontOffer = true, rarity = Rarity.common)]
     public class SwarmModeCard : Card
     {
         public override string Name() => "Swarm Mode";

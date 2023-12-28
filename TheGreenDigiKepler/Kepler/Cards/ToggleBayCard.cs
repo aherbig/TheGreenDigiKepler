@@ -2,7 +2,7 @@
 
 namespace TheGreenDigiKepler.Kepler.Cards
 {
-    [CardMeta(deck = Deck.ares, dontOffer = true, rarity = Rarity.common)]
+    [CardMeta(dontOffer = true, rarity = Rarity.common)]
     public class ToggleBayCard : Card
     {
         public override string Name() => "Toggle Bay Card";

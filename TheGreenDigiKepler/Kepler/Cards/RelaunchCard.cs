@@ -1,6 +1,6 @@
 ﻿namespace TheGreenDigiKepler.Kepler.Cards
 {
-    [CardMeta(deck = Deck.ares, rarity = Rarity.common, dontOffer = true)]
+    [CardMeta(rarity = Rarity.common, dontOffer = true)]
     public class RelaunchCard : Card
     {
         public MissileType missileType;

@@ -1,6 +1,6 @@
 ﻿namespace TheGreenDigiKepler.Kepler.Cards
 {
-    [CardMeta(deck = Deck.colorless, rarity = Rarity.common, upgradesTo = new [] { Upgrade.A, Upgrade.B }, dontOffer = true)]
+    [CardMeta(rarity = Rarity.common, upgradesTo = new [] { Upgrade.A, Upgrade.B }, dontOffer = true)]
     public class BasicDroneCard : Card
     {
         public override string Name() => "Basic Drone";

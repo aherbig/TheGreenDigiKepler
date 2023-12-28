@@ -276,7 +276,7 @@ namespace TheGreenDigiKepler
                     $"{typeof(KeplerShipManifest).Namespace}.Card.ToggleBay",
                     typeof(ToggleBayCard),
                     KeplerSprites.Cards.KeplerCardArt,
-                    null
+                    KeplerDeck
                 );
                 salvagerSystemCard.AddLocalisation("Toggle Bay");
                 registry.RegisterCard(salvagerSystemCard);
@@ -287,14 +287,14 @@ namespace TheGreenDigiKepler
                     $"{typeof(KeplerShipManifest).Namespace}.Card.SwarmMode",
                     typeof(SwarmModeCard),
                     KeplerSprites.Cards.KeplerCardArt,
-                    null
+                    KeplerDeck
                 );
                 swarmmodeCard.AddLocalisation("Swarm Mode");
                 registry.RegisterCard(swarmmodeCard);
             }
             {
                 var relaunch_spr = ExternalSprite.GetRaw((int)Spr.cards_SeekerMissileCard);
-                ExternalCard relaunchCard = new ExternalCard($"{typeof(KeplerShipManifest).Namespace}.Card.Relaunch", typeof(RelaunchCard), relaunch_spr, null);
+                ExternalCard relaunchCard = new ExternalCard($"{typeof(KeplerShipManifest).Namespace}.Card.Relaunch", typeof(RelaunchCard), relaunch_spr, KeplerDeck);
                 relaunchCard.AddLocalisation("Relaunch");
                 registry.RegisterCard(relaunchCard);
             }
@@ -304,7 +304,7 @@ namespace TheGreenDigiKepler
                     $"{typeof(KeplerShipManifest).Namespace}.Card.BasicMine",
                     typeof(BasicMineCard),
                     KeplerSprites.Cards.BasicDrone,
-                    null
+                    KeplerDeck
                 );
                 basicMineCard.AddLocalisation("Basic Mine");
                 registry.RegisterCard(basicMineCard);
@@ -316,12 +316,31 @@ namespace TheGreenDigiKepler
                     $"{typeof(KeplerShipManifest).Namespace}.Card.BasicDrone",
                     typeof(BasicDroneCard),
                     KeplerSprites.Cards.BasicDrone,
-                    null
+                    KeplerDeck
                 );
                 basicDroneCard.AddLocalisation("Basic Drone");
                 registry.RegisterCard(basicDroneCard);
                 BasicDroneCard = basicDroneCard;
             }
+        }
+    }
+    
+    public partial class KeplerShipManifest : IDeckManifest
+    {
+        private ExternalDeck? KeplerDeck { get; set; }
+
+        public void LoadManifest(IDeckRegistry registry)
+        {
+            KeplerDeck = new ExternalDeck
+            (
+                $"{typeof(KeplerShipManifest).Namespace}.Decks.Kepler",
+                System.Drawing.Color.White,
+                System.Drawing.Color.Black,
+                KeplerSprites.Cards.KeplerCardArt,
+                KeplerSprites.Cards.KeplerCardFrame,
+                null
+            );
+            registry.RegisterDeck(KeplerDeck);
         }
     }
 }
