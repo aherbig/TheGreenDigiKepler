@@ -27,6 +27,7 @@ namespace TheGreenDigiKepler.Kepler
         {
             private static string PartPathForFileName(string fileName) => Path.Combine("parts", Path.GetFileName(fileName));
 
+            public static ExternalSprite Chassis { get; } = LoadFromFile(PartPathForFileName("Kepler_Chassis.png"));
             public static ExternalSprite Cannon { get; } = LoadFromFile(PartPathForFileName("KeplerParts_Cannon.png"));
             public static ExternalSprite Cockpit { get; } = LoadFromFile(PartPathForFileName("KeplerParts_Cockpit.png"));
             public static ExternalSprite BayActive { get; } = LoadFromFile(PartPathForFileName("KeplerParts_BayActive.png"));

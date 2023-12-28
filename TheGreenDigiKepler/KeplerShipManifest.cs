@@ -49,7 +49,7 @@ namespace TheGreenDigiKepler
 
         public void LoadManifest(IShipRegistry shipRegistry)
         {
-            Kepler = new ExternalShip("TheGreenDigi.Kepler.Ship",
+            Kepler = new ExternalShip($"{typeof(KeplerShipManifest).Namespace}.Ship",
                 new Ship()
                 {
                     baseDraw = 5,
@@ -61,7 +61,7 @@ namespace TheGreenDigiKepler
                     shieldMaxBase = 3
                 },
                 new [] { MissileBay, Cockpit, Cannon, MissileBay },
-                ExternalSprite.GetRaw((int)Spr.parts_chassis_boxy),
+                KeplerSprites.Parts.Chassis,
                 null
             );
             shipRegistry.RegisterShip(Kepler);
@@ -72,7 +72,7 @@ namespace TheGreenDigiKepler
             if (Kepler == null)
                 return;
             var starter = new ExternalStarterShip
-            ("TheGreenDigi.Kepler.Ship.Starter",
+            ($"{typeof(KeplerShipManifest).Namespace}.Ship.Starter",
                 Kepler.GlobalName,
                 new [] { BasicMineCard ?? throw new Exception(), BasicDroneCard ?? throw new Exception()},
                 new [] { SalvagerSystemArtifact ?? throw new Exception() },
@@ -90,7 +90,7 @@ namespace TheGreenDigiKepler
         {
             return new ExternalPart
             (
-                "TheGreenDigi.Kepler.Ship.MissileBay",
+                $"{typeof(KeplerShipManifest).Namespace}.Ship.Parts.MissileBay",
                 new Part()
                 {
                     active = false,
@@ -106,7 +106,7 @@ namespace TheGreenDigiKepler
         {
             return new ExternalPart
             (
-                "TheGreenDigi.Kepler.Ship.Cannon",
+                $"{typeof(KeplerShipManifest).Namespace}.Ship.Parts.Cannon",
                 new Part()
                 {
                     active = true,
@@ -121,7 +121,7 @@ namespace TheGreenDigiKepler
         {
             return new ExternalPart
             (
-                "TheGreenDigi.Kepler.Ship.Cockpit",
+                $"{typeof(KeplerShipManifest).Namespace}.Ship.Parts.Cockpit",
                 new Part()
                 {
                     active = true,
@@ -142,6 +142,7 @@ namespace TheGreenDigiKepler
                 KeplerSprites.Artifacts.KeplerCannon,
                 KeplerSprites.Artifacts.KeplerCannon2,
                 KeplerSprites.Artifacts.SalvageNet,
+                KeplerSprites.Parts.Chassis,
                 KeplerSprites.Parts.Cannon,
                 KeplerSprites.Parts.Cockpit,
                 KeplerSprites.Parts.BayActive,
@@ -166,7 +167,7 @@ namespace TheGreenDigiKepler
             {
                 SalvagerSystemArtifact = new ExternalArtifact
                 (
-                    "TheGreenDigi.Kepler.Artifact.SalvagerSystem",
+                    $"{typeof(KeplerShipManifest).Namespace}.Artifacts.SalvagerSystem",
                     typeof(SalvagerSystem),
                     KeplerSprites.Artifacts.KeplerCannon,
                     new ExternalGlossary[0],
@@ -186,7 +187,7 @@ namespace TheGreenDigiKepler
             {
                 SalvagerSystemTwoArtifact = new ExternalArtifact
                 (
-                    "TheGreenDigi.Kepler.Artifact.SalvagerSystemV2",
+                    $"{typeof(KeplerShipManifest).Namespace}.Artifacts.SalvagerSystemV2",
                     typeof(SalvagerSystemsTwo),
                     KeplerSprites.Artifacts.KeplerCannon2,
                     new ExternalGlossary[0],
@@ -206,7 +207,7 @@ namespace TheGreenDigiKepler
             {
                 SalvageNetArtifact = new ExternalArtifact
                 (
-                    "TheGreenDigi.Kepler.Artifact.SalvageNet",
+                    $"{typeof(KeplerShipManifest).Namespace}.Artifacts.SalvageNet",
                     typeof(SalvageNet),
                     KeplerSprites.Artifacts.SalvageNet,
                     new ExternalGlossary[0],
@@ -234,32 +235,32 @@ namespace TheGreenDigiKepler
         {
             {
                 var spr = ExternalSprite.GetRaw((int)Spr.cards_Deflection);
-                ExternalCard salvagerSystemCard = new ExternalCard("TheGreenDigi.Kepler.Card.SalvagerSystem", typeof(SalvagerSystemCard), spr, null);
+                ExternalCard salvagerSystemCard = new ExternalCard($"{typeof(KeplerShipManifest).Namespace}.Card.SalvagerSystem", typeof(SalvagerSystemCard), spr, null);
                 salvagerSystemCard.AddLocalisation("Salvager System");
                 registry.RegisterCard(salvagerSystemCard);
             }
             {
                 var swarmmode_spr = ExternalSprite.GetRaw((int)Spr.cards_Deflection);
-                ExternalCard swarmmodeCard = new ExternalCard("TheGreenDigi.Kepler.Card.SwarmMode", typeof(SwarmModeCard), swarmmode_spr, null);
+                ExternalCard swarmmodeCard = new ExternalCard($"{typeof(KeplerShipManifest).Namespace}.Card.SwarmMode", typeof(SwarmModeCard), swarmmode_spr, null);
                 swarmmodeCard.AddLocalisation("Swarm Mode");
                 registry.RegisterCard(swarmmodeCard);
             }
             {
                 var relaunch_spr = ExternalSprite.GetRaw((int)Spr.cards_SeekerMissileCard);
-                ExternalCard relaunchCard = new ExternalCard("TheGreenDigi.Kepler.Card.Relaunch", typeof(RelaunchCard), relaunch_spr, null);
+                ExternalCard relaunchCard = new ExternalCard($"{typeof(KeplerShipManifest).Namespace}.Card.Relaunch", typeof(RelaunchCard), relaunch_spr, null);
                 relaunchCard.AddLocalisation("Relaunch");
                 registry.RegisterCard(relaunchCard);
             }
             {
                 var basicmine_spr = ExternalSprite.GetRaw((int)Spr.cards_colorless);
-                ExternalCard basicMineCard = new ExternalCard("TheGreenDigi.Kepler.Card.BasicMine", typeof(BasicMineCard), basicmine_spr, null);
+                ExternalCard basicMineCard = new ExternalCard($"{typeof(KeplerShipManifest).Namespace}.Card.BasicMine", typeof(BasicMineCard), basicmine_spr, null);
                 basicMineCard.AddLocalisation("Basic Mine");
                 registry.RegisterCard(basicMineCard);
                 BasicMineCard = basicMineCard;
             }
             {
                 var basicdrone_spr = ExternalSprite.GetRaw((int)Spr.cards_colorless);
-                ExternalCard basicDroneCard = new ExternalCard("TheGreenDigi.Kepler.Card.BasicDrone", typeof(BasicDroneCard), basicdrone_spr, null);
+                ExternalCard basicDroneCard = new ExternalCard($"{typeof(KeplerShipManifest).Namespace}.Card.BasicDrone", typeof(BasicDroneCard), basicdrone_spr, null);
                 basicDroneCard.AddLocalisation("Basic Drone");
                 registry.RegisterCard(basicDroneCard);
                 BasicDroneCard = basicDroneCard;

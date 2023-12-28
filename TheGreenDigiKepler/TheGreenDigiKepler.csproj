@@ -35,6 +35,9 @@
       <None Update="Sprites\parts\KeplerParts_Cockpit.png">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
+      <None Include="Sprites\parts\Kepler_Chassis.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
 </Project>
