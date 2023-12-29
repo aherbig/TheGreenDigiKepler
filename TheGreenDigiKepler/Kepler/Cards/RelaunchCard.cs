@@ -20,7 +20,6 @@
 
         public override CardData GetData(State state) => new CardData
         {
-            description = "Launch a missile back.",
             cost = 1,
             temporary = true,
             singleUse = true,
