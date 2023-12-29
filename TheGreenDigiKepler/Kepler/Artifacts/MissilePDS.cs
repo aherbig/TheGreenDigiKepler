@@ -3,6 +3,8 @@
     [ArtifactMeta(owner = Deck.colorless, pools = new ArtifactPool[] {ArtifactPool.EventOnly}, unremovable = true)]
     public class MissilePDS : Artifact
     {
+        public static string DisplayName => "Missile P.D.S.".ToUpper();
+
         public override int ModifyBaseMissileDamage(State state, Combat? combat, bool targetPlayer)
         {
             if (!targetPlayer || combat?.currentCardAction is not AMissileHit missileHit)

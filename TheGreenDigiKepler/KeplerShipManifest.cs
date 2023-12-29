@@ -58,7 +58,7 @@ namespace TheGreenDigiKepler
                 new []
                 {
                     KeplerBayArtifact ?? throw new Exception(),
-                    MissilePDS ?? throw new Exception(),
+                    MissilePDSArtifact ?? throw new Exception(),
                 },
                 new [] { typeof(DodgeColorless), typeof(DroneshiftColorless)} ,
                 new [] { typeof(ShieldPrep) },
@@ -66,8 +66,8 @@ namespace TheGreenDigiKepler
                 {
                     KeplerBayArtifact ?? throw new Exception(),
                     KeplerBayV2Artifact ?? throw new Exception(),
-                    MissileTractorBeam ?? throw new Exception(),
-                    MissilePDS ?? throw new Exception(),
+                    MissileTractorBeamArtifact ?? throw new Exception(),
+                    MissilePDSArtifact ?? throw new Exception(),
                 }
             );
 
@@ -111,8 +111,8 @@ namespace TheGreenDigiKepler
     {
         private ExternalArtifact? KeplerBayArtifact { get; set; }
         private ExternalArtifact? KeplerBayV2Artifact { get; set; }
-        private ExternalArtifact? MissileTractorBeam { get; set; }
-        private ExternalArtifact? MissilePDS { get; set; }
+        private ExternalArtifact? MissileTractorBeamArtifact { get; set; }
+        private ExternalArtifact? MissilePDSArtifact { get; set; }
 
         public void LoadManifest(IArtifactRegistry registry)
         {
@@ -130,7 +130,7 @@ namespace TheGreenDigiKepler
 
                 KeplerBayArtifact.AddLocalisation
                 (
-                    "Kepler Bay",
+                    KeplerBay.DisplayName,
                     "At the start of your turn, if you don’t have a <c=card>Toggle Bay</c> in your hand, gain one."
                 );
 
@@ -150,16 +150,15 @@ namespace TheGreenDigiKepler
 
                 KeplerBayV2Artifact.AddLocalisation
                 (
-                    "Kepler Bay V2",
-                    "Replaces <c=artifact>Kepler Bay</c>.\nIf a missile were to hit your inactive missile bay, it is destroyed instead. " +
-                    "At the start of your turn, if you don’t have a <c=card>Swarm Mode</c> in your hand, gain one."
+                    "Kepler Bay V2".ToUpper(),
+                    $"Replaces <c=artifact>{KeplerBay.DisplayName}</c>.\nAt the start of your turn, if you don’t have a <c=card>Swarm Mode</c> in your hand, gain one."
                 );
 
                 registry.RegisterArtifact(KeplerBayV2Artifact);
             }
             {
                 Type artifactType = typeof(MissileTractorBeam);
-                MissileTractorBeam = new ExternalArtifact
+                MissileTractorBeamArtifact = new ExternalArtifact
                 (
                     artifactType.FullName ?? throw new Exception(),
                     artifactType,
@@ -169,17 +168,17 @@ namespace TheGreenDigiKepler
                     null
                 );
 
-                MissileTractorBeam.AddLocalisation
+                MissileTractorBeamArtifact.AddLocalisation
                 (
-                    "Missile Tractor Beam",
-                    "Replaces <c=artifact>Missile P.D.S.</c>.\nIf a missile were to hit your inactive missile bay, it is instead removed without destroying it, turned around, and added to your hand in a <c=card>Relaunch</c>."
+                    "Missile Tractor Beam".ToUpper(),
+                    $"Replaces <c=artifact>{MissilePDS.DisplayName}</c>.\nIf a missile were to hit your inactive missile bay, it is instead removed without destroying it, turned around, and added to your hand in a <c=card>Relaunch</c>."
                 );
 
-                registry.RegisterArtifact(MissileTractorBeam);
+                registry.RegisterArtifact(MissileTractorBeamArtifact);
             }
             {
                 Type artifactType = typeof(MissilePDS);
-                MissilePDS = new ExternalArtifact
+                MissilePDSArtifact = new ExternalArtifact
                 (
                     artifactType.FullName ?? throw new Exception(),
                     artifactType,
@@ -189,13 +188,13 @@ namespace TheGreenDigiKepler
                     null
                 );
 
-                MissilePDS.AddLocalisation
+                MissilePDSArtifact.AddLocalisation
                 (
-                    "Missile P.D.S.",
+                    MissilePDS.DisplayName,
                     "If a missile were to hit your inactive missile bay, it is destroyed instead."
                 );
 
-                registry.RegisterArtifact(MissilePDS);
+                registry.RegisterArtifact(MissilePDSArtifact);
             }
         }
     }

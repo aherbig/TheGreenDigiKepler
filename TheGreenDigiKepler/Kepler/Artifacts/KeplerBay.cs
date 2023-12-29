@@ -6,6 +6,7 @@ namespace TheGreenDigiKepler.Kepler.Artifacts
     [ArtifactMeta(owner = Deck.colorless, pools = new ArtifactPool[] {ArtifactPool.EventOnly}, unremovable = true)]
     public class KeplerBay : Artifact
     {
+        public static string DisplayName => "Kepler Bay".ToUpper();
         public override void OnTurnStart(State state, Combat combat)
         {
             bool containsSalvagerCard = combat.hand.OfType<ToggleBayCard>().Any();
