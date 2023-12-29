@@ -3,16 +3,16 @@
     [CardMeta(rarity = Rarity.common, dontOffer = true)]
     public class RelaunchCard : Card
     {
-        public MissileType missileType;
+        public StuffBase missileToLaunch = new FakeDrone();
 
         public override List<CardAction> GetActions(State s, Combat c)
         {
             List<CardAction> cardActionList = new List<CardAction>();
-            ASpawn aspawn = new ASpawn();
-            Missile missile = new Missile();
-            missile.yAnimation = 0.0;
-            missile.missileType = missileType;
-            aspawn.thing = missile;
+            ASpawn aspawn = new ASpawn
+            {
+                thing = missileToLaunch
+            };
+            
             cardActionList.Add(aspawn);
 
             return cardActionList;

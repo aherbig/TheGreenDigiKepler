@@ -40,9 +40,13 @@ namespace TheGreenDigiKepler.Kepler.Artifacts
                 return 0;
             }
 
+            Missile missileToReturn = Mutil.DeepCopy<Missile>(missile);
+            missileToReturn.targetPlayer = false;
+            missileToReturn.yAnimation = 0.0f;
+            missileToReturn.isHitting = false;
             combat.QueueImmediate(new AAddCard()
             {
-                card = new RelaunchCard { missileType = missile.missileType },
+                card = new RelaunchCard { missileToLaunch = missileToReturn },
                 destination = CardDestination.Hand
             });
             missileHit.weaken = false;
