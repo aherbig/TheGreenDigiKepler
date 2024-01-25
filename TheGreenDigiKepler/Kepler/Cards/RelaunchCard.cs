@@ -23,6 +23,7 @@
             cost = 1,
             temporary = true,
             singleUse = true,
+            retain = true,
         };
     }
 }
