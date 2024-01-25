@@ -6,7 +6,7 @@
         <Nullable>enable</Nullable>
         <AssemblyName>TheGreenDigiKepler</AssemblyName>
         <RootNamespace>TheGreenDigiKepler</RootNamespace>
-        <Version>2.0.4</Version>
+        <Version>2.0.5</Version>
     </PropertyGroup>
 
     <ItemGroup>
